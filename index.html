@@ -172,12 +172,12 @@
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
                 icon.textContent = '🌙';
-                text.textContent = 'Dark Mode';
+                text.textContent = ' ';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 icon.textContent = '☀️';
-                text.textContent = 'Light Mode';
+                text.textContent = ' ';
             }
         });
     </script>
