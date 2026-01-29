@@ -64,6 +64,11 @@
         .job ul { padding-left: 1.2rem; margin-top: 0.5rem; }
         .job li { margin-bottom: 0.25rem; }
 
+        .blog-post { margin-bottom: 2rem; }
+        .blog-post h4 { margin: 0 0 0.25rem 0; font-size: 1.1rem; }
+        .blog-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; display: block; }
+        .blog-excerpt { font-size: 0.95rem; }
+
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
         .skill-cat strong { display: block; font-size: 0.9rem; margin-bottom: 0.25rem; }
         .skill-cat span { font-size: 0.9rem; color: var(--muted); }
@@ -83,7 +88,7 @@
     <header>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
             <span id="toggle-icon">🌙</span>
-            <span id="toggle-text"> </span>
+            <span id="toggle-text">Dark Mode</span>
         </button>
         <h1>Ben Heine</h1>
         <h2>Web Communications & Digital Operations Specialist</h2>
@@ -130,6 +135,14 @@
         </div>
     </section>
 
+    <section id="blog">
+        <h3>Blog</h3>
+        <div id="blog-posts">
+            <!-- Posts will be injected here -->
+            <p class="muted">Loading posts...</p>
+        </div>
+    </section>
+
     <section id="skills">
         <h3>Skills</h3>
         <div class="skills-grid">
@@ -149,7 +162,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Ben Heine.</p>
+        <p>&copy; 2026 Ben Heine. Built by MoltBot MB.</p>
     </footer>
 
     <script>
@@ -163,7 +176,7 @@
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             icon.textContent = '☀️';
-            text.textContent = ' ';
+            text.textContent = 'Light Mode';
         }
 
         toggle.addEventListener('click', () => {
@@ -172,14 +185,37 @@
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'light');
                 icon.textContent = '🌙';
-                text.textContent = ' ';
+                text.textContent = 'Dark Mode';
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 icon.textContent = '☀️';
-                text.textContent = ' ';
+                text.textContent = 'Light Mode';
             }
         });
+
+        // Simple Blog Injection
+        const posts = [
+            {
+                title: "Launching my new bio site",
+                date: "January 29, 2026",
+                excerpt: "Today I launched this minimal bio site using GitHub Pages and MoltBot. It’s been a great exercise in simplifying my digital presence."
+            },
+            {
+                title: "The power of Data Analytics in Web Ops",
+                date: "January 15, 2026",
+                excerpt: "Looking at how Google Tag Manager and Looker Studio can transform basic web updates into strategic, data-driven decisions."
+            }
+        ];
+
+        const blogContainer = document.getElementById('blog-posts');
+        blogContainer.innerHTML = posts.map(post => `
+            <div class="blog-post">
+                <h4>${post.title}</h4>
+                <span class="blog-date">${post.date}</span>
+                <p class="blog-excerpt">${post.excerpt}</p>
+            </div>
+        `).join('');
     </script>
 
 </body>
