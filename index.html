@@ -83,7 +83,7 @@
     <header>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
             <span id="toggle-icon">🌙</span>
-            <span id="toggle-text">Dark Mode</span>
+            <span id="toggle-text"> </span>
         </button>
         <h1>Ben Heine</h1>
         <h2>Web Communications & Digital Operations Specialist</h2>
@@ -163,7 +163,7 @@
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             icon.textContent = '☀️';
-            text.textContent = 'Light Mode';
+            text.textContent = ' ';
         }
 
         toggle.addEventListener('click', () => {
