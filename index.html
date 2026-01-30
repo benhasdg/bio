@@ -67,9 +67,18 @@
             cursor: pointer;
             font-size: 1.2rem;
             display: flex;
+            transition: transform 0.15s ease, box-shadow 0.15s ease !important;
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
         }
 
         h1 {
