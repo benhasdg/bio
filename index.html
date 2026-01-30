@@ -7,21 +7,23 @@
     <meta name="description" content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
     <style>
         :root {
-            --bg: #fcfcfc;
+            --bg: #f2ebe1; /* Creamy white from palette */
             --text: #111;
-            --accent: #9e1b32; /* UA Crimson */
+            --accent: #e9a65a; /* Warm orange from palette */
+            --secondary: #84a59d; /* Muted teal/sage from palette */
             --muted: #666;
             --border: rgba(0,0,0,0.08);
             --card-bg: #fff;
             --shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
         [data-theme="dark"] {
-            --bg: #0a0a0a;
-            --text: #eee;
-            --accent: #ff4d6d;
+            --bg: #1a1c1c; /* Dark version of sage */
+            --text: #f2ebe1;
+            --accent: #f2bc7d;
+            --secondary: #a7c4bc;
             --muted: #888;
             --border: rgba(255,255,255,0.1);
-            --card-bg: #111;
+            --card-bg: #242626;
             --shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
         * { box-sizing: border-box; transition: background 0.4s, color 0.4s, border-color 0.4s; }
@@ -52,7 +54,7 @@
             box-shadow: var(--shadow);
         }
         h1 { font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -0.04em; font-weight: 800; line-height: 1.1; }
-        h2 { font-size: 1.1rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0; opacity: 0.9; }
+        h2 { font-size: 1.1rem; color: var(--secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0; opacity: 0.9; }
         .contact { margin-top: 1.5rem; font-size: 0.95rem; color: var(--muted); font-weight: 500; }
         .contact a { color: var(--text); text-decoration: none; border-bottom: 2px solid var(--border); padding-bottom: 2px; }
         .contact a:hover { border-bottom-color: var(--accent); color: var(--accent); }
@@ -64,7 +66,7 @@
         .job { margin-bottom: 3rem; padding: 1.5rem; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow); }
         .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
         .job-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
-        .job-company { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+        .job-company { color: var(--secondary); font-weight: 600; font-size: 0.95rem; }
         .job-date { font-size: 0.85rem; color: var(--muted); font-family: monospace; }
         .job ul { padding-left: 1.2rem; margin-top: 1rem; color: var(--muted); }
         .job li { margin-bottom: 0.5rem; }
