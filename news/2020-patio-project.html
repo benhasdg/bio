@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,80 +12,225 @@
             --accent: #e9a65a;
             --secondary: #84a59d;
             --muted: #666;
-            --border: rgba(0,0,0,0.08);
+            --border: rgba(0, 0, 0, 0.08);
             --card-bg: #fff;
         }
+
         [data-theme="dark"] {
             --bg: #1a1c1c;
             --text: #f2ebe1;
             --accent: #f2bc7d;
             --secondary: #a7c4bc;
             --muted: #888;
-            --border: rgba(255,255,255,0.1);
+            --border: rgba(255, 255, 255, 0.1);
             --card-bg: #242626;
         }
-        body { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
-        .back { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; transition: color 0.2s; }
-        .back:hover { color: var(--accent); }
-        h1 { font-size: 3rem; margin-top: 0; letter-spacing: -0.04em; line-height: 1.1; font-weight: 800; }
-        .date { font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 2rem; display: block; letter-spacing: 0.1em; }
-        article { font-size: 1.15rem; }
-        article p { margin-bottom: 1.5rem; }
-        .image-container { margin: 3rem 0; }
-        .image-container img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--border); }
-        .image-caption { font-size: 0.9rem; color: var(--muted); text-align: center; margin-top: 1rem; font-style: italic; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
-        footer { margin-top: 5rem; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+        .back:hover {
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 0;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .date {
+            font-family: monospace;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: block;
+            letter-spacing: 0.1em;
+        }
+
+        article {
+            font-size: 1.15rem;
+        }
+
+        article p {
+            margin-bottom: 1.5rem;
+        }
+
+        .image-container {
+            margin: 3rem 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        footer {
+            margin-top: 5rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span id="toggle-icon">🌙</span>
+    </button>
     <a href="../index.html" class="back">← Back to Home</a>
     <span class="date">JULY 12, 2020</span>
     <h1>Hands-on Operations: The Stone Paver Patio Project</h1>
-    
+
     <article>
-        <p>Operational efficiency isn't just a digital concept—it’s a philosophy that translates directly to the physical world. In the summer of 2020, I applied these principles to a significant home infrastructure project: building a multi-level stone paver patio from scratch.</p>
+        <p>Operational efficiency isn't just a digital concept—it’s a philosophy that translates directly to the
+            physical world. In the summer of 2020, I applied these principles to a significant home infrastructure
+            project: building a multi-level stone paver patio from scratch.</p>
 
         <div class="image-container">
             <img src="assets/patio-final.jpg" alt="Final completed stone paver patio with a large Monstera plant">
             <p class="image-caption">The finished product: A robust, multi-level outdoor operations hub.</p>
         </div>
 
-        <p>The project began with a completely raw site. Like any complex system overhaul, the first phase was "deconstruction"—clearing the area and preparing the ground for a new architectural foundation. Proper drainage and site grading were the primary technical requirements, necessitating a precise slope to move water away from the house foundation.</p>
+        <p>The project began with a completely raw site. Like any complex system overhaul, the first phase was
+            "deconstruction"—clearing the area and preparing the ground for a new architectural foundation. Proper
+            drainage and site grading were the primary technical requirements, necessitating a precise slope to move
+            water away from the house foundation.</p>
 
         <div class="image-container">
             <img src="assets/patio-before.jpg" alt="Original raw site before construction">
             <p class="image-caption">The starting point: Site clearing and initial grading.</p>
         </div>
 
-        <p>Phase two involved establishing the retaining wall using heavy-duty masonry blocks. This wall provides the structural integrity needed to support the elevated patio surface. I backfilled the wall with crushed stone and laid a multi-layered base, tamping each layer to ensure a zero-settlement surface.</p>
+        <p>Phase two involved establishing the retaining wall using heavy-duty masonry blocks. This wall provides the
+            structural integrity needed to support the elevated patio surface. I backfilled the wall with crushed stone
+            and laid a multi-layered base, tamping each layer to ensure a zero-settlement surface.</p>
 
         <div class="grid">
             <div>
-                <img src="assets/patio-progress-1.jpg" alt="Construction progress showing the retaining wall" style="width:100%; border-radius:8px;">
+                <img src="assets/patio-progress-1.jpg" alt="Construction progress showing the retaining wall"
+                    style="width:100%; border-radius:8px;">
             </div>
             <div>
-                <img src="assets/patio-progress-3.jpg" alt="Construction progress showing the completed wall and base" style="width:100%; border-radius:8px;">
+                <img src="assets/patio-progress-3.jpg" alt="Construction progress showing the completed wall and base"
+                    style="width:100%; border-radius:8px;">
             </div>
         </div>
 
-        <p>The "tech stack" for this project was heavy on physical tools: levels, tamping plates, and a whole lot of manual labor. Hand-laying the final pavers required a "pixel-perfect" attention to detail, ensuring every block was seated correctly to maintain the integrity of the pattern.</p>
+        <p>The "tech stack" for this project was heavy on physical tools: levels, tamping plates, and a whole lot of
+            manual labor. Hand-laying the final pavers required a "pixel-perfect" attention to detail, ensuring every
+            block was seated correctly to maintain the integrity of the pattern.</p>
 
         <div class="image-container">
             <img src="assets/patio-tools.jpg" alt="Tools used for the patio project laid out on the sand base">
             <p class="image-caption">The assembly line: Essential tools for grading and leveling.</p>
         </div>
 
-        <p>Hand-laying the final pavers required a "pixel-perfect" attention to detail. Every block had to be seated correctly to maintain the integrity of the pattern and the slope. The result is a durable, functional space that stands as a testament to the power of building things right the first time.</p>
+        <p>Hand-laying the final pavers required a "pixel-perfect" attention to detail. Every block had to be seated
+            correctly to maintain the integrity of the pattern and the slope. The result is a durable, functional space
+            that stands as a testament to the power of building things right the first time.</p>
     </article>
 
     <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
 
     <script>
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = document.getElementById('toggle-icon');
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
         }
+        toggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
     </script>
 </body>
+
 </html>

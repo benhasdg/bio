@@ -1,33 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben Heine Launches New Digital Operations Hub</title>
     <style>
-        :root { --bg: #fcfcfc; --text: #111; --accent: #9e1b32; --muted: #666; --border: rgba(0,0,0,0.08); }
-        [data-theme="dark"] { --bg: #0a0a0a; --text: #eee; --accent: #ff4d6d; --muted: #888; --border: rgba(255,255,255,0.1); }
-        body { font-family: "Inter", sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); max-width: 700px; margin: 0 auto; padding: 4rem 2rem; }
-        .back { text-decoration: none; color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; }
-        h1 { font-size: 2.5rem; margin-top: 0; letter-spacing: -0.03em; }
-        .date { font-family: monospace; color: var(--muted); margin-bottom: 2rem; display: block; }
-        article p { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        footer { margin-top: 5rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 2rem; }
+        :root {
+            --bg: #fcfcfc;
+            --text: #111;
+            --accent: #9e1b32;
+            --muted: #666;
+            --border: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0a0a0a;
+            --text: #eee;
+            --accent: #ff4d6d;
+            --muted: #888;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease;
+            z-index: 100;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            letter-spacing: -0.03em;
+        }
+
+        .date {
+            font-family: monospace;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        article p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            margin-top: 5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
     </style>
 </head>
+
 <body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span id="toggle-icon">🌙</span>
+    </button>
     <a href="../index.html" class="back">← Back to Home</a>
     <span class="date">JANUARY 29, 2026</span>
     <h1>Ben Heine Launches New Digital Operations Hub</h1>
     <article>
-        <p>Today marks the launch of my new digital operations hub. In a world of cluttered social media and complex portfolios, I wanted to build something that reflects my professional philosophy: clean, functional, and data-driven.</p>
-        <p>Built with high-performance vanilla code and hosted on GitHub Pages, this hub will serve as the primary source for my latest projects, insights into web communications, and news regarding my work at UAB.</p>
+        <p>Today marks the launch of my new digital operations hub. In a world of cluttered social media and complex
+            portfolios, I wanted to build something that reflects my professional philosophy: clean, functional, and
+            data-driven.</p>
+        <p>Built with high-performance vanilla code and hosted on GitHub Pages, this hub will serve as the primary
+            source for my latest projects, insights into web communications, and news regarding my work at UAB.</p>
     </article>
     <footer>&copy; 2026 Ben Heine</footer>
     <script>
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        const toggle = document.getElementById('theme-toggle');
+        const icon = document.getElementById('toggle-icon');
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
         }
+        toggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
     </script>
 </body>
+
 </html>
