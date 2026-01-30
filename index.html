@@ -5,109 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben Heine | Web Communications & Digital Operations Specialist</title>
     <meta name="description" content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
-    <meta name="keywords" content="Ben Heine, Web Communications, Digital Operations, SEO, Birmingham AL, Data Analytics, UAB">
-    <link rel="canonical" href="https://benhasdg.github.io/bio/">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://benhasdg.github.io/bio/">
-    <meta property="og:title" content="Ben Heine | Web Communications & Digital Operations">
-    <meta property="og:description" content="Digital strategist focused on web operations and data analytics. Currently leading digital platforms at UAB.">
-    
-    <!-- Structured Data for Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Ben Heine",
-      "jobTitle": "Web Communications Specialist",
-      "url": "https://benhasdg.github.io/bio/",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Birmingham",
-        "addressRegion": "AL"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/ben-heine-9aa94611/",
-        "https://www.behance.net/gallery/80476669/Selected-Work"
-      ]
-    }
-    </script>
     <style>
         :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
+            --bg: #fcfcfc;
+            --text: #111;
             --accent: #9e1b32; /* UA Crimson */
             --muted: #666;
-            --border: #eee;
-            --toggle-bg: #f4f4f4;
+            --border: rgba(0,0,0,0.08);
+            --card-bg: #fff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.03);
         }
         [data-theme="dark"] {
-            --bg: #121212;
-            --text: #e0e0e0;
+            --bg: #0a0a0a;
+            --text: #eee;
             --accent: #ff4d6d;
-            --muted: #a0a0a0;
-            --border: #333;
-            --toggle-bg: #2a2a2a;
+            --muted: #888;
+            --border: rgba(255,255,255,0.1);
+            --card-bg: #111;
+            --shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+        * { box-sizing: border-box; transition: background 0.4s, color 0.4s, border-color 0.4s; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
             color: var(--text);
             background: var(--bg);
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 4rem 2rem;
         }
-        header { margin-bottom: 3rem; position: relative; }
+        header { margin-bottom: 5rem; position: relative; }
         .theme-toggle {
             position: absolute;
-            top: 0;
+            top: -1rem;
             right: 0;
-            background: none;
-            border: none;
-            color: var(--text);
-            padding: 0.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: var(--shadow);
         }
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-        h2 { font-size: 1.25rem; color: var(--muted); font-weight: 400; margin-top: 0; }
-        .contact { margin-top: 1rem; font-size: 0.9rem; color: var(--muted); }
-        .contact a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); }
-        .contact a:hover { border-bottom-color: var(--accent); }
+        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -0.04em; font-weight: 800; line-height: 1.1; }
+        h2 { font-size: 1.1rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0; opacity: 0.9; }
+        .contact { margin-top: 1.5rem; font-size: 0.95rem; color: var(--muted); font-weight: 500; }
+        .contact a { color: var(--text); text-decoration: none; border-bottom: 2px solid var(--border); padding-bottom: 2px; }
+        .contact a:hover { border-bottom-color: var(--accent); color: var(--accent); }
         
-        section { margin-bottom: 3rem; }
-        h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        section { margin-bottom: 5rem; }
+        h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 2.5rem; display: flex; align-items: center; }
+        h3::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 1.5rem; }
         
-        .job { margin-bottom: 2rem; }
-        .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .job-title { font-weight: 600; font-size: 1.1rem; }
-        .job-company { color: var(--muted); }
-        .job-date { font-size: 0.85rem; color: var(--muted); }
-        .job ul { padding-left: 1.2rem; margin-top: 0.5rem; }
-        .job li { margin-bottom: 0.25rem; }
+        .job { margin-bottom: 3rem; padding: 1.5rem; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+        .job-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+        .job-company { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+        .job-date { font-size: 0.85rem; color: var(--muted); font-family: monospace; }
+        .job ul { padding-left: 1.2rem; margin-top: 1rem; color: var(--muted); }
+        .job li { margin-bottom: 0.5rem; }
 
-        .blog-post { margin-bottom: 2rem; }
-        .blog-post h4 { margin: 0 0 0.25rem 0; font-size: 1.1rem; }
-        .blog-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; display: block; }
-        .blog-excerpt { font-size: 0.95rem; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .news-card { 
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .news-card h4 { margin: 0 0 0.75rem 0; font-size: 1.15rem; line-height: 1.4; }
+        .news-card .date { font-size: 0.75rem; font-family: monospace; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+        .news-card p { margin: 0; font-size: 0.9rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-        .skill-cat strong { display: block; font-size: 0.9rem; margin-bottom: 0.25rem; }
-        .skill-cat span { font-size: 0.9rem; color: var(--muted); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .skill-cat { padding: 1rem; border-left: 3px solid var(--accent); background: var(--card-bg); }
+        .skill-cat strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--muted); }
+        .skill-cat span { font-size: 1rem; font-weight: 500; }
 
-        footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted); text-align: center; }
+        footer { margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); text-align: center; }
         
         @media (max-width: 600px) {
-            body { padding: 1.5rem; }
+            body { padding: 2rem 1.5rem; }
+            h1 { font-size: 2.5rem; }
             .job-header { flex-direction: column; }
-            .job-date { margin-top: 0.25rem; }
-            .theme-toggle { position: static; margin-bottom: 2rem; width: fit-content; }
+            .job-date { margin-top: 0.5rem; }
+            .theme-toggle { top: -2rem; }
         }
     </style>
 </head>
@@ -117,19 +108,23 @@
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
             <span id="toggle-icon">🌙</span>
         </button>
+        <h2>Digital Operations & Web Communications</h2>
         <h1>Ben Heine</h1>
-        <h2>Web Communications & Digital Operations Specialist</h2>
         <div class="contact">
             Birmingham, AL &bull; 
             <a href="mailto:rbheine@gmail.com">rbheine@gmail.com</a> &bull; 
             <a href="https://www.linkedin.com/in/ben-heine-9aa94611/">LinkedIn</a> &bull; 
-            <a href="https://www.behance.net/gallery/80476669/Selected-Work">Design Work</a>
+            <a href="https://www.behance.net/gallery/80476669/Selected-Work">Portfolio</a>
         </div>
     </header>
 
     <section id="about">
         <h3>About</h3>
-        <p>Experienced digital strategist focused on web operations, data analytics, and operational efficiency. Currently leading digital platforms at the University of Alabama at Birmingham, translating complex business needs into technical solutions.</p>
+        <p style="font-size: 1.2rem; font-weight: 400; color: var(--text);">
+            I translate complex business needs into elegant technical solutions. 
+            Currently architecting digital platforms at the <strong>University of Alabama at Birmingham</strong>, 
+            blending data analytics with operational efficiency to drive institutional growth.
+        </p>
     </section>
 
     <section id="experience">
@@ -138,7 +133,7 @@
         <div class="job">
             <div class="job-header">
                 <span class="job-title">Web Communications Specialist</span>
-                <span class="job-date">2020 – Present</span>
+                <span class="job-date">2020 – PRES</span>
             </div>
             <div class="job-company">University of Alabama at Birmingham</div>
             <ul>
@@ -164,47 +159,55 @@
 
     <section id="news">
         <h3>News</h3>
-        <div id="blog-posts">
-            <!-- Posts will be injected here -->
-            <p class="muted">Loading news...</p>
+        <div class="news-grid" id="news-grid">
+            <a href="news/2026-hub-launch.html" class="news-card">
+                <span class="date">JAN 29, 2026</span>
+                <h4>Ben Heine Launches New Digital Operations Hub</h4>
+                <p>Establishing a new minimal digital hub to streamline communications and showcase ongoing web operations at UAB.</p>
+            </a>
+            <a href="news/2026-data-analytics.html" class="news-card">
+                <span class="date">JAN 15, 2026</span>
+                <h4>Optimizing Data Analytics for Institutional Growth</h4>
+                <p>How leveraging Google Tag Manager and Looker Studio provides actionable insights for large-scale university platforms.</p>
+            </a>
+            <a href="news/2020-patio-project.html" class="news-card">
+                <span class="date">JUL 12, 2020</span>
+                <h4>Hands-on Operations: The Stone Paver Patio Project</h4>
+                <p>Transforming a simple back porch into a functional patio space through grading and hand-laying stone pavers.</p>
+            </a>
         </div>
     </section>
 
     <section id="skills">
-        <h3>Skills</h3>
+        <h3>Expertise</h3>
         <div class="skills-grid">
             <div class="skill-cat">
                 <strong>Analytics & SEO</strong>
-                <span>Google Analytics, Looker Studio, Google Ads</span>
+                <span>Google Analytics, Looker Studio, GTM</span>
             </div>
             <div class="skill-cat">
-                <strong>Platforms</strong>
+                <strong>E-Commerce</strong>
                 <span>Joomla, Magento, Shopify, Adobe Suite</span>
             </div>
             <div class="skill-cat">
-                <strong>Technical</strong>
-                <span>HTML/CSS, Excel, Python, SQL, UAS (Drone)</span>
+                <strong>Engineering</strong>
+                <span>HTML/CSS, Python, SQL, UAS (Drone)</span>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Ben Heine. Built by MoltBot MB.</p>
+        <p>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</p>
     </footer>
 
     <script>
         const toggle = document.getElementById('theme-toggle');
         const icon = document.getElementById('toggle-icon');
-        const text = document.getElementById('toggle-text');
-        
-        // Check for saved theme preference or system preference
         const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        
         if (currentTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
             icon.textContent = '☀️';
         }
-
         toggle.addEventListener('click', () => {
             let theme = document.documentElement.getAttribute('data-theme');
             if (theme === 'dark') {
@@ -217,34 +220,6 @@
                 icon.textContent = '☀️';
             }
         });
-
-        // Simple Blog Injection (News)
-        const posts = [
-            {
-                title: "Ben Heine Launches New Digital Operations Hub",
-                date: "January 29, 2026",
-                excerpt: "Ben Heine has officially launched a new minimal digital hub to streamline communications and showcase ongoing web operations at the University of Alabama at Birmingham."
-            },
-            {
-                title: "Optimizing Data Analytics for Institutional Growth",
-                date: "January 15, 2026",
-                excerpt: "Deep dive into how leveraging Google Tag Manager and Looker Studio provides actionable insights for large-scale university web platforms."
-            },
-            {
-                title: "Hands-on Operations: The Stone Paver Patio Project",
-                date: "July 12, 2020",
-                excerpt: "Taking operational efficiency outdoors. This summer project involved grading, leveling, and hand-laying stone pavers to transform a simple back porch into a functional patio space."
-            }
-        ];
-
-        const blogContainer = document.getElementById('blog-posts');
-        blogContainer.innerHTML = posts.map(post => `
-            <div class="blog-post">
-                <h4>${post.title}</h4>
-                <span class="blog-date">${post.date}</span>
-                <p class="blog-excerpt">${post.excerpt}</p>
-            </div>
-        `).join('');
     </script>
 
 </body>
