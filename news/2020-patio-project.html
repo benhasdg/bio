@@ -5,26 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Stone Paver Patio Project | Ben Heine</title>
     <style>
-        :root { --bg: #fcfcfc; --text: #111; --accent: #9e1b32; --muted: #666; --border: rgba(0,0,0,0.08); }
-        [data-theme="dark"] { --bg: #0a0a0a; --text: #eee; --accent: #ff4d6d; --muted: #888; --border: rgba(255,255,255,0.1); }
-        body { font-family: "Inter", sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); max-width: 700px; margin: 0 auto; padding: 4rem 2rem; }
-        .back { text-decoration: none; color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; }
-        h1 { font-size: 2.5rem; margin-top: 0; letter-spacing: -0.03em; }
-        .date { font-family: monospace; color: var(--muted); margin-bottom: 2rem; display: block; }
-        article p { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        footer { margin-top: 5rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 2rem; }
+        :root {
+            --bg: #f2ebe1;
+            --text: #111;
+            --accent: #e9a65a;
+            --secondary: #84a59d;
+            --muted: #666;
+            --border: rgba(0,0,0,0.08);
+            --card-bg: #fff;
+        }
+        [data-theme="dark"] {
+            --bg: #1a1c1c;
+            --text: #f2ebe1;
+            --accent: #f2bc7d;
+            --secondary: #a7c4bc;
+            --muted: #888;
+            --border: rgba(255,255,255,0.1);
+            --card-bg: #242626;
+        }
+        body { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+        .back { text-decoration: none; color: var(--secondary); font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; transition: color 0.2s; }
+        .back:hover { color: var(--accent); }
+        h1 { font-size: 3rem; margin-top: 0; letter-spacing: -0.04em; line-height: 1.1; font-weight: 800; }
+        .date { font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 2rem; display: block; letter-spacing: 0.1em; }
+        article { font-size: 1.15rem; }
+        article p { margin-bottom: 1.5rem; }
+        .image-container { margin: 3rem 0; }
+        .image-container img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--border); }
+        .image-caption { font-size: 0.9rem; color: var(--muted); text-align: center; margin-top: 1rem; font-style: italic; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 2.2rem; } }
+        footer { margin-top: 5rem; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; }
     </style>
 </head>
 <body>
     <a href="../index.html" class="back">← Back to Home</a>
     <span class="date">JULY 12, 2020</span>
     <h1>Hands-on Operations: The Stone Paver Patio Project</h1>
+    
     <article>
-        <p>Operational efficiency isn't just for web platforms—it applies to physical spaces too. This summer, I tackled a complete overhaul of my back porch area.</p>
-        <p>The project required precise grading and leveling to ensure proper drainage, followed by hand-laying several hundred stone pavers. It was an exercise in patience and detail, much like building a robust data architecture.</p>
-        <p>The result is a functional, durable outdoor space that serves as a reminder that the best solutions often require getting your hands dirty and building from the ground up.</p>
+        <p>Operational efficiency isn't just a digital concept—it’s a philosophy that translates directly to the physical world. In the summer of 2020, I applied these principles to a significant home infrastructure project: building a multi-level stone paver patio from scratch.</p>
+
+        <div class="image-container">
+            <img src="assets/patio-final.jpg" alt="Final completed stone paver patio with a large Monstera plant">
+            <p class="image-caption">The finished product: A robust, multi-level outdoor operations hub.</p>
+        </div>
+
+        <p>Like any complex system, the success of the patio depended entirely on the foundational architecture. I started by grading the soil and establishing a retaining wall using heavy-duty masonry blocks. Proper drainage was the primary technical requirement, necessitating a precise slope to move water away from the house foundation.</p>
+
+        <div class="grid">
+            <div>
+                <img src="assets/patio-progress-1.jpg" alt="Construction progress showing the retaining wall" style="width:100%; border-radius:8px;">
+            </div>
+            <div>
+                <img src="assets/patio-progress-2.jpg" alt="Construction progress showing the base preparation" style="width:100%; border-radius:8px;">
+            </div>
+        </div>
+
+        <p>The "tech stack" for this project was heavy on physical tools: levels, tamping plates, and a whole lot of manual labor. After the retaining wall was set and backfilled, I laid a multi-layered base of crushed stone and sand, tamping each layer to ensure a zero-settlement surface.</p>
+
+        <div class="image-container">
+            <img src="assets/patio-tools.jpg" alt="Tools used for the patio project laid out on the sand base">
+            <p class="image-caption">The assembly line: Essential tools for grading and leveling.</p>
+        </div>
+
+        <p>Hand-laying the final pavers required a "pixel-perfect" attention to detail. Every block had to be seated correctly to maintain the integrity of the pattern and the slope. The result is a durable, functional space that stands as a testament to the power of building things right the first time.</p>
     </article>
-    <footer>&copy; 2026 Ben Heine</footer>
+
+    <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
+
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.setAttribute('data-theme', 'dark');
