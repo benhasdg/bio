@@ -185,52 +185,59 @@
             margin-bottom: 0.5rem;
         }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .news-card {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent);
-        }
-
-        .news-card h4 {
-            margin: 0 0 0.75rem 0;
-            font-size: 1.15rem;
-            line-height: 1.4;
-        }
-
-        .news-card .date {
-            font-size: 0.75rem;
-            font-family: monospace;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .news-card p {
+        .news-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
+        }
+
+        .news-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .news-item a {
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 2rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+        }
+
+        .news-item a:hover {
+            color: var(--secondary);
+        }
+
+        .news-item a:hover .news-date::after {
+            width: 100%;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .news-date {
             font-size: 0.9rem;
+            font-family: monospace;
             color: var(--muted);
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .news-date::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .skills-grid {
@@ -318,6 +325,30 @@
         </p>
     </section>
 
+    <section id="news">
+        <h3>News</h3>
+        <ul class="news-list">
+            <li class="news-item">
+                <a href="news/2026-hub-launch.html">
+                    <span class="news-title">Ben Heine Launches New Digital Operations Hub</span>
+                    <span class="news-date">JAN 29, 2026</span>
+                </a>
+            </li>
+            <li class="news-item">
+                <a href="news/2026-data-analytics.html">
+                    <span class="news-title">Optimizing Data Analytics for Institutional Growth</span>
+                    <span class="news-date">JAN 15, 2026</span>
+                </a>
+            </li>
+            <li class="news-item">
+                <a href="news/2020-patio-project.html">
+                    <span class="news-title">Hands-on Operations: The Stone Paver Patio Project</span>
+                    <span class="news-date">JUL 12, 2020</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
     <section id="experience">
         <h3>Experience</h3>
 
@@ -347,30 +378,6 @@
                 <li>Built a custom shipping system that made our fulfillment process 45% faster.</li>
                 <li>Learned SEO the hard way and managed to grow our organic traffic by 35%.</li>
             </ul>
-        </div>
-    </section>
-
-    <section id="news">
-        <h3>News</h3>
-        <div class="news-grid" id="news-grid">
-            <a href="news/2026-hub-launch.html" class="news-card">
-                <span class="date">JAN 29, 2026</span>
-                <h4>Ben Heine Launches New Digital Operations Hub</h4>
-                <p>Establishing a new minimal digital hub to streamline communications and showcase ongoing web
-                    operations at UAB.</p>
-            </a>
-            <a href="news/2026-data-analytics.html" class="news-card">
-                <span class="date">JAN 15, 2026</span>
-                <h4>Optimizing Data Analytics for Institutional Growth</h4>
-                <p>How leveraging Google Tag Manager and Looker Studio provides actionable insights for large-scale
-                    university platforms.</p>
-            </a>
-            <a href="news/2020-patio-project.html" class="news-card">
-                <span class="date">JUL 12, 2020</span>
-                <h4>Hands-on Operations: The Stone Paver Patio Project</h4>
-                <p>Transforming a simple back porch into a functional patio space through grading and hand-laying stone
-                    pavers.</p>
-            </a>
         </div>
     </section>
 
