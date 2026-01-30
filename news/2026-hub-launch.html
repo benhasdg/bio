@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Heine Launches New Digital Operations Hub</title>
+    <style>
+        :root { --bg: #fcfcfc; --text: #111; --accent: #9e1b32; --muted: #666; --border: rgba(0,0,0,0.08); }
+        [data-theme="dark"] { --bg: #0a0a0a; --text: #eee; --accent: #ff4d6d; --muted: #888; --border: rgba(255,255,255,0.1); }
+        body { font-family: "Inter", sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); max-width: 700px; margin: 0 auto; padding: 4rem 2rem; }
+        .back { text-decoration: none; color: var(--accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 2rem; display: inline-block; }
+        h1 { font-size: 2.5rem; margin-top: 0; letter-spacing: -0.03em; }
+        .date { font-family: monospace; color: var(--muted); margin-bottom: 2rem; display: block; }
+        article p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+        footer { margin-top: 5rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 2rem; }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back">← Back to Home</a>
+    <span class="date">JANUARY 29, 2026</span>
+    <h1>Ben Heine Launches New Digital Operations Hub</h1>
+    <article>
+        <p>Today marks the launch of my new digital operations hub. In a world of cluttered social media and complex portfolios, I wanted to build something that reflects my professional philosophy: clean, functional, and data-driven.</p>
+        <p>Built with high-performance vanilla code and hosted on GitHub Pages, this hub will serve as the primary source for my latest projects, insights into web communications, and news regarding my work at UAB.</p>
+    </article>
+    <footer>&copy; 2026 Ben Heine</footer>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>
