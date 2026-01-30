@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Renovation: A Complete Transformation | Ben Heine</title>
+    <style>
+        :root {
+            --bg: #f2ebe1;
+            --text: #111;
+            --accent: #e9a65a;
+            --secondary: #84a59d;
+            --muted: #666;
+            --border: rgba(0, 0, 0, 0.08);
+            --card-bg: #fff;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1c1c;
+            --text: #f2ebe1;
+            --accent: #f2bc7d;
+            --secondary: #a7c4bc;
+            --muted: #888;
+            --border: rgba(255, 255, 255, 0.1);
+            --card-bg: #242626;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            transition: background 0.4s, color 0.4s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .back {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+        .back:hover {
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 0;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .date {
+            font-family: monospace;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: block;
+            letter-spacing: 0.1em;
+        }
+
+        article {
+            font-size: 1.15rem;
+        }
+
+        article p {
+            margin-bottom: 1.5rem;
+        }
+
+        .image-container {
+            margin: 3rem 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        footer {
+            margin-top: 5rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span id="toggle-icon">🌙</span>
+    </button>
+    <a href="../index.html" class="back">← Back to Home</a>
+    <span class="date">JANUARY 2026</span>
+    <h1>Kitchen Renovation: A Complete Transformation</h1>
+
+    <article>
+        <p>Sometimes the best projects are the ones closest to home. This kitchen renovation combined technical
+            precision with design sensibility, turning an outdated space into a modern, functional heart of the home.
+        </p>
+
+        <div class="image-container">
+            <img src="assets/kitchenrenoimages/IMG_6328 Large.jpeg"
+                alt="Completed modern kitchen with new countertops and cabinets">
+            <p class="image-caption">The finished kitchen: clean lines, modern finishes, and optimized workflow.</p>
+        </div>
+
+        <p>The project started with demo—stripping everything down to the studs to address underlying electrical and
+            plumbing systems. Like refactoring legacy code, sometimes you need to go back to the foundation to build
+            something that lasts.</p>
+
+        <div class="grid">
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_1983 Large.jpeg" alt="Kitchen demolition phase"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_1988 Large.jpeg" alt="Kitchen framing and rough-in work"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+        </div>
+
+        <p>The rebuild phase required careful planning and execution. New cabinets, countertops, lighting, and flooring
+            all had to work together as a cohesive system—not unlike architecting a multi-tier web application.</p>
+
+        <div class="grid">
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_1995 Large.jpeg" alt="Installing new cabinets"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_2022 Large.jpeg" alt="Kitchen progress with countertops"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img src="assets/kitchenrenoimages/IMG_2027 Large.jpeg"
+                alt="Final kitchen layout with appliances installed">
+            <p class="image-caption">Organization and functionality: every inch optimized for efficiency.</p>
+        </div>
+
+        <p>From concept to completion, this renovation reinforced a key principle that applies to both physical and
+            digital projects: attention to detail at every phase produces results that stand the test of time.</p>
+
+        <div class="grid">
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_2144 Large.jpeg" alt="Kitchen detail shot"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+            <div>
+                <img src="assets/kitchenrenoimages/IMG_2421 Large.jpeg" alt="Kitchen finishing touches"
+                    style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            </div>
+        </div>
+    </article>
+
+    <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const icon = document.getElementById('toggle-icon');
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            icon.textContent = '☀️';
+        }
+        toggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.textContent = '🌙';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+
+</html>
