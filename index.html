@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <!-- Test push verification by Antigravity -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben Heine | Web Communications & Digital Operations Specialist</title>
-    <meta name="description" content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
+    <meta name="description"
+        content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
     <style>
         :root {
-            --bg: #f2ebe1; /* Creamy white from palette */
+            --bg: #f2ebe1;
+            /* Creamy white from palette */
             --text: #111;
-            --accent: #e9a65a; /* Warm orange from palette */
-            --secondary: #84a59d; /* Muted teal/sage from palette */
+            --accent: #e9a65a;
+            /* Warm orange from palette */
+            --secondary: #84a59d;
+            /* Muted teal/sage from palette */
             --muted: #666;
-            --border: rgba(0,0,0,0.08);
+            --border: rgba(0, 0, 0, 0.08);
             --card-bg: #fff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.03);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
+
         [data-theme="dark"] {
-            --bg: #1a1c1c; /* Dark version of sage */
+            --bg: #1a1c1c;
+            /* Dark version of sage */
             --text: #f2ebe1;
             --accent: #f2bc7d;
             --secondary: #a7c4bc;
             --muted: #888;
-            --border: rgba(255,255,255,0.1);
+            --border: rgba(255, 255, 255, 0.1);
             --card-bg: #242626;
-            --shadow: 0 4px 20px rgba(0,0,0,0.5);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        * { box-sizing: border-box; transition: background 0.4s, color 0.4s, border-color 0.4s; }
+
+        * {
+            box-sizing: border-box;
+            transition: background 0.4s, color 0.4s, border-color 0.4s;
+        }
+
         body {
             font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
@@ -37,7 +49,12 @@
             margin: 0 auto;
             padding: 4rem 2rem;
         }
-        header { margin-bottom: 5rem; position: relative; }
+
+        header {
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
         .theme-toggle {
             position: absolute;
             top: -1rem;
@@ -54,26 +71,117 @@
             justify-content: center;
             box-shadow: var(--shadow);
         }
-        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: -0.04em; font-weight: 800; line-height: 1.1; }
-        h2 { font-size: 1.1rem; color: var(--secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0; opacity: 0.9; }
-        .contact { margin-top: 1.5rem; font-size: 0.95rem; color: var(--muted); font-weight: 500; }
-        .contact a { color: var(--text); text-decoration: none; border-bottom: 2px solid var(--border); padding-bottom: 2px; }
-        .contact a:hover { border-bottom-color: var(--accent); color: var(--accent); }
-        
-        section { margin-bottom: 5rem; }
-        h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 2.5rem; display: flex; align-items: center; }
-        h3::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 1.5rem; }
-        
-        .job { margin-bottom: 3rem; padding: 1.5rem; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
-        .job-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
-        .job-company { color: var(--secondary); font-weight: 600; font-size: 0.95rem; }
-        .job-date { font-size: 0.85rem; color: var(--muted); font-family: monospace; }
-        .job ul { padding-left: 1.2rem; margin-top: 1rem; color: var(--muted); }
-        .job li { margin-bottom: 0.5rem; }
 
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-        .news-card { 
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.04em;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0;
+            opacity: 0.9;
+        }
+
+        .contact {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .contact a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2px;
+        }
+
+        .contact a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 1.5rem;
+        }
+
+        .job {
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .job-company {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-family: monospace;
+        }
+
+        .job ul {
+            padding-left: 1.2rem;
+            margin-top: 1rem;
+            color: var(--muted);
+        }
+
+        .job li {
+            margin-bottom: 0.5rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
             text-decoration: none;
             color: inherit;
             display: block;
@@ -84,27 +192,96 @@
             box-shadow: var(--shadow);
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .news-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--accent); }
-        .news-card h4 { margin: 0 0 0.75rem 0; font-size: 1.15rem; line-height: 1.4; }
-        .news-card .date { font-size: 0.75rem; font-family: monospace; color: var(--accent); margin-bottom: 0.5rem; display: block; }
-        .news-card p { margin: 0; font-size: 0.9rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-        .skill-cat { padding: 1rem; border-left: 3px solid var(--accent); background: var(--card-bg); }
-        .skill-cat strong { display: block; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--muted); }
-        .skill-cat span { font-size: 1rem; font-weight: 500; }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
 
-        footer { margin-top: 8rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); text-align: center; }
-        
+        .news-card h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .news-card .date {
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .news-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-cat {
+            padding: 1rem;
+            border-left: 3px solid var(--accent);
+            background: var(--card-bg);
+        }
+
+        .skill-cat strong {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--muted);
+        }
+
+        .skill-cat span {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            margin-top: 8rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
         @media (max-width: 600px) {
-            body { padding: 2rem 1.5rem; }
-            h1 { font-size: 2.5rem; }
-            .job-header { flex-direction: column; }
-            .job-date { margin-top: 0.5rem; }
-            .theme-toggle { top: -2rem; }
+            body {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+
+            .job-date {
+                margin-top: 0.5rem;
+            }
+
+            .theme-toggle {
+                top: -2rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -114,9 +291,9 @@
         <h2>Digital Operations & Web Communications</h2>
         <h1>Ben Heine</h1>
         <div class="contact">
-            Birmingham, AL &bull; 
-            <a href="mailto:rbheine@gmail.com">rbheine@gmail.com</a> &bull; 
-            <a href="https://www.linkedin.com/in/ben-heine-9aa94611/">LinkedIn</a> &bull; 
+            Birmingham, AL &bull;
+            <a href="mailto:rbheine@gmail.com">rbheine@gmail.com</a> &bull;
+            <a href="https://www.linkedin.com/in/ben-heine-9aa94611/">LinkedIn</a> &bull;
             <a href="https://www.behance.net/gallery/80476669/Selected-Work">Portfolio</a>
         </div>
     </header>
@@ -124,15 +301,16 @@
     <section id="about">
         <h3>About</h3>
         <p style="font-size: 1.2rem; font-weight: 400; color: var(--text);">
-            I translate complex business needs into elegant technical solutions. 
-            Currently architecting digital platforms at the <strong>University of Alabama at Birmingham</strong>, 
-            blending data analytics with operational efficiency to drive institutional growth.
+            I build websites and digital systems that actually work for people.
+            Right now I'm at the <strong>University of Alabama at Birmingham</strong>,
+            where I manage web platforms, dig into data to figure out what's working, and occasionally fly drones for
+            construction surveys.
         </p>
     </section>
 
     <section id="experience">
         <h3>Experience</h3>
-        
+
         <div class="job">
             <div class="job-header">
                 <span class="job-title">Web Communications Specialist</span>
@@ -140,9 +318,11 @@
             </div>
             <div class="job-company">University of Alabama at Birmingham</div>
             <ul>
-                <li>Operational lead for digital platforms across four university departments.</li>
-                <li>Architected data analytics lifecycles using GTM and Looker Studio.</li>
-                <li>Execute technical drone (UAS) surveys for construction diagnostics.</li>
+                <li>Manage web platforms for four university departments—keeping things running smoothly and finding
+                    ways to make them better.</li>
+                <li>Set up analytics systems with Google Tag Manager and Looker Studio to help us understand what users
+                    actually need.</li>
+                <li>Fly drones for construction surveys (yes, really) to help diagnose building issues.</li>
             </ul>
         </div>
 
@@ -153,9 +333,9 @@
             </div>
             <div class="job-company">Mountain High Outfitters</div>
             <ul>
-                <li>Managed eCommerce operations for 20,000+ annual orders ($2M revenue).</li>
-                <li>Built a custom 15-node fulfillment system, increasing efficiency by 45%.</li>
-                <li>Grew organic traffic by 35% through targeted SEO strategies.</li>
+                <li>Ran the online store, handling 20,000+ orders a year (about $2M in revenue).</li>
+                <li>Built a custom shipping system that made our fulfillment process 45% faster.</li>
+                <li>Learned SEO the hard way and managed to grow our organic traffic by 35%.</li>
             </ul>
         </div>
     </section>
@@ -166,17 +346,20 @@
             <a href="news/2026-hub-launch.html" class="news-card">
                 <span class="date">JAN 29, 2026</span>
                 <h4>Ben Heine Launches New Digital Operations Hub</h4>
-                <p>Establishing a new minimal digital hub to streamline communications and showcase ongoing web operations at UAB.</p>
+                <p>Establishing a new minimal digital hub to streamline communications and showcase ongoing web
+                    operations at UAB.</p>
             </a>
             <a href="news/2026-data-analytics.html" class="news-card">
                 <span class="date">JAN 15, 2026</span>
                 <h4>Optimizing Data Analytics for Institutional Growth</h4>
-                <p>How leveraging Google Tag Manager and Looker Studio provides actionable insights for large-scale university platforms.</p>
+                <p>How leveraging Google Tag Manager and Looker Studio provides actionable insights for large-scale
+                    university platforms.</p>
             </a>
             <a href="news/2020-patio-project.html" class="news-card">
                 <span class="date">JUL 12, 2020</span>
                 <h4>Hands-on Operations: The Stone Paver Patio Project</h4>
-                <p>Transforming a simple back porch into a functional patio space through grading and hand-laying stone pavers.</p>
+                <p>Transforming a simple back porch into a functional patio space through grading and hand-laying stone
+                    pavers.</p>
             </a>
         </div>
     </section>
@@ -226,4 +409,5 @@
     </script>
 
 </body>
+
 </html>
