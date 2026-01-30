@@ -155,6 +155,66 @@
             padding-top: 2rem;
             text-align: center;
         }
+
+        /* Lightbox styles */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            cursor: pointer;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .image-container img,
+        .grid img {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+
+        .image-container img:hover,
+        .grid img:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -194,11 +254,13 @@
         <p>The rebuild phase required careful planning and execution. New cabinets, countertops, lighting, and flooring
             all had to work together as a cohesive system—not unlike architecting a multi-tier web application.</p>
 
-        <p>The custom wood countertops presented unique engineering challenges. At 2.1 inches thick, the solid wood
-            slabs required routing on the underside to accommodate an undermount sink—creating a recessed pocket that
-            allowed the sink to sit flush despite the beefiness of the material. Every offcut was saved and repurposed:
-            smaller sections were precisely fitted into the sink's accessory rails, transforming wasted material into
-            functional counter space extensions.</p>
+        <p>The custom wood countertops presented unique engineering challenges. I chose rubberwood—a sustainable,
+            durable hardwood that's often overlooked but offers excellent workability and strength. At around $200 for
+            the material, it was an economical choice that didn't sacrifice quality. The 2.1-inch thick slabs required
+            routing on the underside to accommodate an undermount sink—creating a recessed pocket that allowed the sink
+            to sit flush despite the beefiness of the material. Every offcut was saved and repurposed: smaller sections
+            were precisely fitted into the sink's accessory rails, transforming wasted material into functional counter
+            space extensions.</p>
 
         <div class="image-container">
             <img src="assets/kitchenrenoimages/IMG_1993 Large.jpeg"
@@ -257,6 +319,11 @@
         </div>
     </article>
 
+    <!-- Lightbox overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+        <img class="lightbox-image" id="lightbox-img" src="" alt="">
+    </div>
+
     <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
 
     <script>
@@ -277,6 +344,29 @@
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
                 icon.textContent = '☀️';
+            }
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.image-container img, .grid img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
             }
         });
     </script>
