@@ -9,6 +9,11 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description"
         content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
+    <meta property="og:title" content="Ben Heine | Digital Operations & Web Communications">
+    <meta property="og:description" content="Personal hub of Ben Heine. Systems thinking applied to web operations, data, and hands-on projects.">
+    <meta property="og:url" content="https://bheine.net">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
         :root {
             --bg: #f2ebe1;
@@ -22,6 +27,7 @@
             --border: rgba(0, 0, 0, 0.08);
             --card-bg: #fff;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         [data-theme="dark"] {
@@ -33,27 +39,33 @@
             --muted: #888;
             --border: rgba(255, 255, 255, 0.1);
             --card-bg: #242626;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         * {
             box-sizing: border-box;
-            transition: background 0.4s, color 0.4s, border-color 0.4s;
+            transition: background 0.4s, color 0.4s, border-color 0.4s, transform 0.2s;
         }
 
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: var(--font-main);
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
 
         header {
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
             position: relative;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .theme-toggle {
@@ -63,47 +75,45 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             cursor: pointer;
             font-size: 1.2rem;
             display: flex;
-            transition: transform 0.15s ease, box-shadow 0.15s ease !important;
             align-items: center;
             justify-content: center;
             box-shadow: var(--shadow);
-            z-index: 100;
+            z-index: 1000;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.05);
-        }
-
-        .theme-toggle:active {
-            transform: scale(0.95);
+            transform: scale(1.1) rotate(10deg);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.04em;
-            font-weight: 800;
-            line-height: 1.1;
+            letter-spacing: -0.05em;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(45deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         h2 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--secondary);
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             margin-top: 0;
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         .contact {
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
             color: var(--muted);
             font-weight: 500;
         }
@@ -111,27 +121,31 @@
         .contact a {
             color: var(--text);
             text-decoration: none;
-            border-bottom: 2px solid var(--border);
+            border-bottom: 1px solid var(--accent);
             padding-bottom: 2px;
+            margin: 0 0.5rem;
         }
 
+        .contact a:first-child { margin-left: 0; }
+
         .contact a:hover {
-            border-bottom-color: var(--accent);
             color: var(--accent);
+            background: rgba(233, 166, 90, 0.1);
         }
 
         section {
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
         }
 
         h3 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--muted);
-            margin-bottom: 2.5rem;
+            letter-spacing: 0.25em;
+            color: var(--secondary);
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
+            font-weight: 800;
         }
 
         h3::after {
@@ -139,16 +153,22 @@
             flex: 1;
             height: 1px;
             background: var(--border);
-            margin-left: 1.5rem;
+            margin-left: 2rem;
         }
 
         .job {
-            margin-bottom: 3rem;
-            padding: 1.5rem;
-            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            border-radius: 16px;
             background: var(--card-bg);
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
         }
 
         .job-header {
@@ -159,41 +179,41 @@
         }
 
         .job-title {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.01em;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
         }
 
         .job-company {
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
 
         .job-date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted);
-            font-family: monospace;
+            font-weight: 600;
+            letter-spacing: 0.05em;
         }
 
         .job ul {
             padding-left: 1.2rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             color: var(--muted);
         }
 
         .job li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .news-list {
             list-style: none;
             padding: 0;
             margin: 0;
-        }
-
-        .news-item {
-            margin-bottom: 1.25rem;
+            display: grid;
+            gap: 1.5rem;
         }
 
         .news-item a {
@@ -201,101 +221,87 @@
             color: var(--text);
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            gap: 2rem;
-            padding: 0.5rem 0;
-            transition: color 0.2s;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
 
         .news-item a:hover {
-            color: var(--secondary);
-        }
-
-        .news-item a:hover .news-date::after {
-            width: 100%;
+            border-color: var(--accent);
+            transform: translateX(8px);
+            background: var(--bg);
         }
 
         .news-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            flex: 1;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
         .news-date {
-            font-size: 0.9rem;
-            font-family: monospace;
-            color: var(--muted);
-            white-space: nowrap;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        .news-date::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.3s ease;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
         }
 
         .skill-cat {
-            padding: 1rem;
-            border-left: 3px solid var(--accent);
+            padding: 2rem;
+            border-radius: 16px;
             background: var(--card-bg);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-cat::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent);
         }
 
         .skill-cat strong {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-            color: var(--muted);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            color: var(--secondary);
         }
 
         .skill-cat span {
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
         footer {
-            margin-top: 8rem;
-            padding-top: 2rem;
+            margin-top: 10rem;
+            padding: 4rem 0;
             border-top: 1px solid var(--border);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--muted);
             text-align: center;
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .job-header {
-                flex-direction: column;
-            }
-
-            .job-date {
-                margin-top: 0.5rem;
-            }
-
-            .theme-toggle {
-                top: -2rem;
-            }
+            body { padding: 2rem 1.25rem; }
+            h1 { font-size: 2.8rem; }
+            .job-header { flex-direction: column; }
+            .job-date { margin-top: 0.5rem; }
+            .news-item a { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .theme-toggle { top: 1rem; right: 1rem; width: 40px; height: 40px; }
         }
     </style>
 </head>
