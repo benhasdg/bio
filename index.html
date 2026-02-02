@@ -21,6 +21,7 @@
             --muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.1);
             --card-bg: rgba(30, 30, 50, 0.8);
+            --job-bg: #1e1e32;
             --glow: rgba(255, 107, 157, 0.15);
             --tag-bg: rgba(255, 107, 157, 0.15);
             --gradient-1: linear-gradient(135deg, #ff6b9d, #c084fc, #22d3ee);
@@ -35,6 +36,7 @@
             --muted: #64748b;
             --border: rgba(0, 0, 0, 0.08);
             --card-bg: rgba(255, 255, 255, 0.9);
+            --job-bg: #ffffff;
             --glow: rgba(219, 39, 119, 0.1);
             --tag-bg: rgba(219, 39, 119, 0.1);
         }
@@ -287,16 +289,12 @@
             margin-bottom: 2rem;
             padding: 1.75rem;
             border-radius: 16px;
-            background: #1e1e32;
+            background: var(--job-bg);
             position: relative;
             box-shadow: 0 8px 32px var(--glow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: all 0.3s ease;
             border: 2px solid var(--border);
             z-index: 1;
-        }
-
-        [data-theme="light"] .job {
-            background: #ffffff;
         }
 
         .job::before {
