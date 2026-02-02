@@ -159,17 +159,39 @@
             }
         }
 
-        @keyframes bob {
-            0% {
-                transform: translateY(0);
+        @keyframes float1 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
             }
 
             50% {
-                transform: translateY(-8px);
+                transform: translateY(-8px) rotate(0.5deg);
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
             }
 
+            50% {
+                transform: translateY(-10px) translateX(2px) rotate(-0.5deg);
+            }
+        }
+
+        @keyframes float3 {
+
+            0%,
             100% {
-                transform: translateY(0);
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-6px) translateX(-2px) rotate(0.8deg);
             }
         }
 
@@ -472,21 +494,22 @@
         }
 
         .skills-grid:hover .skill-cat {
-            animation: bob 3s ease-in-out infinite;
-            border-color: var(--accent);
-            box-shadow: 0 8px 24px var(--glow);
+            box-shadow: 0 16px 48px var(--glow);
         }
 
         .skills-grid:hover .skill-cat:nth-child(1) {
+            animation: float1 4.5s ease-in-out infinite;
             animation-delay: 0s;
         }
 
         .skills-grid:hover .skill-cat:nth-child(2) {
-            animation-delay: 0.5s;
+            animation: float2 5.2s ease-in-out infinite;
+            animation-delay: 0.3s;
         }
 
         .skills-grid:hover .skill-cat:nth-child(3) {
-            animation-delay: 1s;
+            animation: float3 4.8s ease-in-out infinite;
+            animation-delay: 0.8s;
         }
 
         .skill-cat strong {
