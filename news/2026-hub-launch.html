@@ -8,30 +8,35 @@
     <link rel="icon" type="image/png" href="../favicon.png">
     <style>
         :root {
-            --bg: #fcfcfc;
+            --bg: #f2ebe1;
             --text: #111;
-            --accent: #9e1b32;
+            --accent: #e9a65a;
+            --secondary: #84a59d;
             --muted: #666;
             --border: rgba(0, 0, 0, 0.08);
+            --card-bg: #fff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         [data-theme="dark"] {
-            --bg: #0a0a0a;
-            --text: #eee;
-            --accent: #ff4d6d;
+            --bg: #1a1c1c;
+            --text: #f2ebe1;
+            --accent: #f2bc7d;
+            --secondary: #a7c4bc;
             --muted: #888;
             --border: rgba(255, 255, 255, 0.1);
+            --card-bg: #242626;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         body {
-            font-family: "Inter", sans-serif;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 4rem 2rem;
-            position: relative;
             transition: background 0.4s, color 0.4s;
         }
 
@@ -39,7 +44,7 @@
             position: fixed;
             top: 2rem;
             right: 2rem;
-            background: var(--bg);
+            background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 50%;
             width: 34px;
@@ -49,50 +54,58 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.15s ease;
-            z-index: 100;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.05);
-        }
-
-        .theme-toggle:active {
-            transform: scale(0.95);
+            box-shadow: var(--shadow);
+            z-index: 1000;
         }
 
         .back {
             text-decoration: none;
-            color: var(--accent);
-            font-weight: 600;
+            color: var(--secondary);
+            font-weight: 700;
             font-size: 0.9rem;
             margin-bottom: 2rem;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
+        .back:hover { color: var(--accent); }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-top: 0;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
+            font-weight: 800;
+            line-height: 1.1;
         }
 
         .date {
             font-family: monospace;
-            color: var(--muted);
+            color: var(--secondary);
+            font-weight: 700;
             margin-bottom: 2rem;
             display: block;
+            text-transform: uppercase;
+        }
+
+        article {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
         article p {
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         footer {
             margin-top: 5rem;
             font-size: 0.8rem;
             color: var(--muted);
-            border-top: 1px solid var(--border);
+            text-align: center;
             padding-top: 2rem;
         }
     </style>
@@ -106,13 +119,10 @@
     <span class="date">JANUARY 29, 2026</span>
     <h1>Ben Heine Launches New Digital Operations Hub</h1>
     <article>
-        <p>Today marks the launch of my new digital operations hub. In a world of cluttered social media and complex
-            portfolios, I wanted to build something that reflects my professional philosophy: clean, functional, and
-            data-driven.</p>
-        <p>Built with high-performance vanilla code and hosted on GitHub Pages, this hub will serve as the primary
-            source for my latest projects, insights into web communications, and news regarding my work at UAB.</p>
+        <p>I've always believed that digital systems should be as sturdy and functional as a well-built kitchen. This hub is my "refactored" home on the web—built with vanilla code to keep things fast, focused, and adaptable.</p>
+        <p>Hosted on GitHub Pages, this space will be the primary source for my latest projects, technical insights, and updates from my work at UAB. It's built to last, without the clutter of traditional social media or bloated portfolios.</p>
     </article>
-    <footer>&copy; 2026 Ben Heine</footer>
+    <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
     <script>
         const toggle = document.getElementById('theme-toggle');
         const icon = document.getElementById('toggle-icon');
