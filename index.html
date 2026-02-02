@@ -116,18 +116,90 @@
             }
         }
 
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.04em;
-            font-weight: 700;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--accent), var(--secondary), var(--tertiary), var(--accent));
-            background-size: 300% 300%;
+        @keyframes letter-bounce {
+
+            0%,
+            100% {
+                transform: var(--base-transform);
+            }
+
+            50% {
+                transform: var(--base-transform) translateY(-8px) scale(1.1);
+            }
+        }
+
+        h1.funky-name {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            line-height: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+
+        h1.funky-name .spacer {
+            width: 1.5rem;
+        }
+
+        h1.funky-name .letter {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--secondary), var(--tertiary));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 6s ease infinite;
+            animation: gradient-shift 3s ease infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: default;
+            text-shadow: none;
+        }
+
+        /* Chaotic offsets for each letter */
+        h1.funky-name .letter:nth-child(1) {
+            --base-transform: rotate(-8deg) translateY(5px);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(2) {
+            --base-transform: rotate(4deg) translateY(-3px) scale(0.9);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(3) {
+            --base-transform: rotate(-3deg) translateY(8px) scale(1.05);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(5) {
+            --base-transform: rotate(6deg) translateY(-6px) scale(1.1);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(6) {
+            --base-transform: rotate(-5deg) translateY(4px);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(7) {
+            --base-transform: rotate(3deg) translateY(-2px) scale(0.95);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(8) {
+            --base-transform: rotate(-4deg) translateY(6px);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:nth-child(9) {
+            --base-transform: rotate(7deg) translateY(-4px) scale(1.08);
+            transform: var(--base-transform);
+        }
+
+        h1.funky-name .letter:hover {
+            animation: letter-bounce 0.4s ease;
+            filter: brightness(1.2);
         }
 
         h2 {
@@ -192,11 +264,11 @@
             padding: 1.75rem;
             border-radius: 16px;
             background: var(--card-bg);
-            border: 2px solid transparent;
-            background-clip: padding-box;
             position: relative;
             box-shadow: 0 8px 32px var(--glow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid var(--border);
+            z-index: 1;
         }
 
         .job::before {
@@ -209,13 +281,14 @@
             background: linear-gradient(135deg, var(--accent), var(--secondary), var(--tertiary));
             border-radius: 18px;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .job:hover {
             transform: translateY(-4px);
             box-shadow: 0 16px 48px var(--glow);
+            border-color: transparent;
         }
 
         .job:hover::before {
@@ -426,7 +499,14 @@
             <span id="toggle-icon">🌙</span>
         </button>
         <h2>Digital Operations & Web Communications</h2>
-        <h1>Ben Heine</h1>
+        <h1 class="funky-name">
+            <span class="letter" style="--i:0">B</span><span class="letter" style="--i:1">e</span><span class="letter"
+                style="--i:2">n</span>
+            <span class="spacer"></span>
+            <span class="letter" style="--i:3">H</span><span class="letter" style="--i:4">e</span><span class="letter"
+                style="--i:5">i</span><span class="letter" style="--i:6">n</span><span class="letter"
+                style="--i:7">e</span>
+        </h1>
         <div class="contact">
             Birmingham, AL &bull;
             <a href="mailto:rbheine@gmail.com">rbheine@gmail.com</a> &bull;
