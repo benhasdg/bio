@@ -10,7 +10,7 @@
     <meta name="description"
         content="Personal website of Ben Heine, a Web Communications and Digital Operations Specialist in Birmingham, AL. Expertise in SEO, web operations, and data analytics.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
         :root {
             --bg: #0f0f1a;
@@ -116,30 +116,55 @@
             }
         }
 
-        @keyframes letter-bounce {
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-100vw) var(--subtle-transform);
+                opacity: 0;
+            }
+
+            60% {
+                transform: translateX(10px) var(--subtle-transform);
+                opacity: 1;
+            }
+
+            80% {
+                transform: translateX(-5px) var(--subtle-transform);
+            }
+
+            100% {
+                transform: translateX(0) var(--subtle-transform);
+            }
+        }
+
+        @keyframes subtle-pulse {
 
             0%,
             100% {
-                transform: var(--base-transform);
+                transform: translateX(0) var(--subtle-transform) scale(1);
+                filter: brightness(1);
             }
 
             50% {
-                transform: var(--base-transform) translateY(-8px) scale(1.1);
+                transform: translateX(0) var(--subtle-transform) scale(1.03);
+                filter: brightness(1.15);
             }
         }
 
         h1.funky-name {
-            font-size: 5rem;
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 6rem;
             margin-bottom: 1rem;
-            font-weight: 900;
-            line-height: 1;
+            font-weight: 400;
+            line-height: 0.9;
             display: flex;
             flex-wrap: wrap;
             align-items: baseline;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
         }
 
         h1.funky-name .spacer {
-            width: 1.5rem;
+            width: 1.2rem;
         }
 
         h1.funky-name .letter {
@@ -149,57 +174,46 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 3s ease infinite;
-            animation-delay: calc(var(--i) * 0.1s);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: default;
-            text-shadow: none;
+            animation:
+                slide-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                subtle-pulse 2s ease-in-out infinite;
+            animation-delay:
+                calc(var(--i) * 0.08s),
+                calc(1s + var(--i) * 0.15s);
+            opacity: 0;
         }
 
-        /* Chaotic offsets for each letter */
+        /* Very subtle chaotic offsets */
         h1.funky-name .letter:nth-child(1) {
-            --base-transform: rotate(-8deg) translateY(5px);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(-1.5deg) translateY(1px);
         }
 
         h1.funky-name .letter:nth-child(2) {
-            --base-transform: rotate(4deg) translateY(-3px) scale(0.9);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(1deg) translateY(-1px) scale(0.98);
         }
 
         h1.funky-name .letter:nth-child(3) {
-            --base-transform: rotate(-3deg) translateY(8px) scale(1.05);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(-0.5deg) translateY(2px);
         }
 
         h1.funky-name .letter:nth-child(5) {
-            --base-transform: rotate(6deg) translateY(-6px) scale(1.1);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(1.5deg) translateY(-1px) scale(1.02);
         }
 
         h1.funky-name .letter:nth-child(6) {
-            --base-transform: rotate(-5deg) translateY(4px);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(-1deg) translateY(1px);
         }
 
         h1.funky-name .letter:nth-child(7) {
-            --base-transform: rotate(3deg) translateY(-2px) scale(0.95);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(0.5deg) translateY(-1px) scale(0.99);
         }
 
         h1.funky-name .letter:nth-child(8) {
-            --base-transform: rotate(-4deg) translateY(6px);
-            transform: var(--base-transform);
+            --subtle-transform: rotate(-0.8deg) translateY(1px);
         }
 
         h1.funky-name .letter:nth-child(9) {
-            --base-transform: rotate(7deg) translateY(-4px) scale(1.08);
-            transform: var(--base-transform);
-        }
-
-        h1.funky-name .letter:hover {
-            animation: letter-bounce 0.4s ease;
-            filter: brightness(1.2);
+            --subtle-transform: rotate(1.2deg) translateY(-2px) scale(1.01);
         }
 
         h2 {
