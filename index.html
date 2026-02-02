@@ -118,21 +118,28 @@
 
         @keyframes slide-in {
             0% {
-                transform: translateX(-100vw) var(--subtle-transform);
+                transform: translateX(-120vw) rotate(-15deg) var(--subtle-transform);
                 opacity: 0;
             }
 
-            60% {
-                transform: translateX(10px) var(--subtle-transform);
+            50% {
+                transform: translateX(25px) rotate(8deg) var(--subtle-transform);
                 opacity: 1;
             }
 
-            80% {
-                transform: translateX(-5px) var(--subtle-transform);
+            70% {
+                transform: translateX(-12px) rotate(-4deg) var(--subtle-transform);
+                opacity: 1;
+            }
+
+            85% {
+                transform: translateX(6px) rotate(2deg) var(--subtle-transform);
+                opacity: 1;
             }
 
             100% {
-                transform: translateX(0) var(--subtle-transform);
+                transform: translateX(0) rotate(0deg) var(--subtle-transform);
+                opacity: 1;
             }
         }
 
@@ -152,7 +159,7 @@
 
         h1.funky-name {
             font-family: 'Bebas Neue', 'Impact', sans-serif;
-            font-size: 6rem;
+            font-size: 8rem;
             margin-bottom: 1rem;
             font-weight: 400;
             line-height: 0.9;
@@ -161,10 +168,11 @@
             align-items: baseline;
             text-transform: uppercase;
             letter-spacing: 0.02em;
+            overflow: hidden;
         }
 
         h1.funky-name .spacer {
-            width: 1.2rem;
+            width: 1.5rem;
         }
 
         h1.funky-name .letter {
@@ -175,11 +183,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation:
-                slide-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+                slide-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
                 subtle-pulse 2s ease-in-out infinite;
             animation-delay:
-                calc(var(--i) * 0.08s),
-                calc(1s + var(--i) * 0.15s);
+                calc(var(--i) * 0.1s),
+                calc(1.2s + var(--i) * 0.15s);
             opacity: 0;
         }
 
