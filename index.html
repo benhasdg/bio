@@ -159,7 +159,7 @@
 
         h1.funky-name {
             font-family: 'Bebas Neue', 'Impact', sans-serif;
-            font-size: 8rem;
+            font-size: 10rem;
             margin-bottom: 1rem;
             font-weight: 400;
             line-height: 0.9;
@@ -167,12 +167,14 @@
             flex-wrap: wrap;
             align-items: baseline;
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: -0.02em;
             overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         h1.funky-name .spacer {
-            width: 1.5rem;
+            width: 1.3rem;
         }
 
         h1.funky-name .letter {
@@ -191,37 +193,37 @@
             opacity: 0;
         }
 
-        /* Very subtle chaotic offsets */
+        /* Increased size variance */
         h1.funky-name .letter:nth-child(1) {
-            --subtle-transform: rotate(-1.5deg) translateY(1px);
+            --subtle-transform: rotate(-1.5deg) translateY(1px) scale(1.08);
         }
 
         h1.funky-name .letter:nth-child(2) {
-            --subtle-transform: rotate(1deg) translateY(-1px) scale(0.98);
+            --subtle-transform: rotate(1deg) translateY(-1px) scale(0.92);
         }
 
         h1.funky-name .letter:nth-child(3) {
-            --subtle-transform: rotate(-0.5deg) translateY(2px);
+            --subtle-transform: rotate(-0.5deg) translateY(2px) scale(1.05);
         }
 
         h1.funky-name .letter:nth-child(5) {
-            --subtle-transform: rotate(1.5deg) translateY(-1px) scale(1.02);
+            --subtle-transform: rotate(1.5deg) translateY(-1px) scale(0.94);
         }
 
         h1.funky-name .letter:nth-child(6) {
-            --subtle-transform: rotate(-1deg) translateY(1px);
+            --subtle-transform: rotate(-1deg) translateY(1px) scale(1.06);
         }
 
         h1.funky-name .letter:nth-child(7) {
-            --subtle-transform: rotate(0.5deg) translateY(-1px) scale(0.99);
+            --subtle-transform: rotate(0.5deg) translateY(-1px) scale(0.96);
         }
 
         h1.funky-name .letter:nth-child(8) {
-            --subtle-transform: rotate(-0.8deg) translateY(1px);
+            --subtle-transform: rotate(-0.8deg) translateY(1px) scale(1.04);
         }
 
         h1.funky-name .letter:nth-child(9) {
-            --subtle-transform: rotate(1.2deg) translateY(-2px) scale(1.01);
+            --subtle-transform: rotate(1.2deg) translateY(-2px) scale(0.93);
         }
 
         h2 {
