@@ -234,6 +234,12 @@
             transition: opacity 0.2s;
         }
 
+        .image-container img:focus,
+        .grid img:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+
         .image-container img:hover,
         .grid img:hover {
             opacity: 0.9;
@@ -260,6 +266,15 @@
                 opacity: 1;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -277,7 +292,9 @@
             project: building a multi-level stone paver patio from scratch.</p>
 
         <div class="image-container">
-            <img src="assets/patio-final.jpg" alt="Final completed stone paver patio with a large Monstera plant">
+            <img src="assets/patio-final.jpg" alt="Final completed stone paver patio with a large Monstera plant"
+                width="1280" height="960" decoding="async" data-lightbox="true" role="button" tabindex="0"
+                aria-haspopup="dialog">
             <p class="image-caption">The finished product: A robust, multi-level outdoor operations hub.</p>
         </div>
 
@@ -287,7 +304,9 @@
             water away from the house foundation.</p>
 
         <div class="image-container">
-            <img src="assets/patio-before.jpg" alt="Original raw site before construction">
+            <img src="assets/patio-before.jpg" alt="Original raw site before construction" width="1280" height="960"
+                loading="lazy" decoding="async" data-lightbox="true" role="button" tabindex="0"
+                aria-haspopup="dialog">
             <p class="image-caption">The starting point: Site clearing and initial grading.</p>
         </div>
 
@@ -298,11 +317,13 @@
         <div class="grid">
             <div>
                 <img src="assets/patio-progress-1.jpg" alt="Construction progress showing the retaining wall"
-                    style="width:100%; border-radius:8px;">
+                    width="1280" height="960" loading="lazy" decoding="async" data-lightbox="true" role="button"
+                    tabindex="0" aria-haspopup="dialog" style="width:100%; border-radius:8px;">
             </div>
             <div>
                 <img src="assets/patio-progress-3.jpg" alt="Construction progress showing the completed wall and base"
-                    style="width:100%; border-radius:8px;">
+                    width="1280" height="960" loading="lazy" decoding="async" data-lightbox="true" role="button"
+                    tabindex="0" aria-haspopup="dialog" style="width:100%; border-radius:8px;">
             </div>
         </div>
 
@@ -311,7 +332,9 @@
             block was seated correctly to maintain the integrity of the pattern.</p>
 
         <div class="image-container">
-            <img src="assets/patio-tools.jpg" alt="Tools used for the patio project laid out on the sand base">
+            <img src="assets/patio-tools.jpg" alt="Tools used for the patio project laid out on the sand base"
+                width="960" height="1280" loading="lazy" decoding="async" data-lightbox="true" role="button"
+                tabindex="0" aria-haspopup="dialog">
             <p class="image-caption">The assembly line: Essential tools for grading and leveling.</p>
         </div>
 
@@ -321,7 +344,7 @@
     </article>
 
     <!-- Lightbox overlay -->
-    <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
         <img class="lightbox-image" id="lightbox-img" src="" alt="">
     </div>
 
@@ -353,23 +376,41 @@
         // Lightbox functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        const images = document.querySelectorAll('.image-container img, .grid img');
+        const images = document.querySelectorAll('[data-lightbox="true"]');
+        let lastFocusedElement = null;
+
+        const openLightbox = (img) => {
+            lastFocusedElement = document.activeElement;
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            lightbox.focus();
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        };
 
         images.forEach(img => {
-            img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.add('active');
+            img.addEventListener('click', () => openLightbox(img));
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox(img);
+                }
             });
         });
 
-        lightbox.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
+        lightbox.addEventListener('click', closeLightbox);
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
+                closeLightbox();
             }
         });
     </script>

@@ -266,18 +266,6 @@
             --subtle-transform: rotate(1.2deg) translateY(-2px) scale(0.93);
         }
 
-        h2 {
-            font-size: 1rem;
-            background: linear-gradient(90deg, var(--secondary), var(--tertiary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-top: 0;
-        }
-
         .contact {
             margin-top: 1.5rem;
             font-size: 0.95rem;
@@ -303,7 +291,7 @@
             margin-bottom: 5rem;
         }
 
-        h3 {
+        h2 {
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.25em;
@@ -314,7 +302,7 @@
             font-weight: 700;
         }
 
-        h3::after {
+        h2::after {
             content: "";
             flex: 1;
             height: 2px;
@@ -573,6 +561,20 @@
                 right: 1rem;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            h1.funky-name .letter {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -599,7 +601,7 @@
     </header>
 
     <section id="about">
-        <h3>About</h3>
+        <h2>About</h2>
         <p style="font-size: 1.2rem; font-weight: 400; color: var(--text);">
             I build & manage digital systems that work.
             Currently at the <strong>University of Alabama at Birmingham</strong>,
@@ -609,7 +611,7 @@
     </section>
 
     <section id="news">
-        <h3>News</h3>
+        <h2>News</h2>
         <ul class="news-list">
             <li class="news-item">
                 <a href="news/2026-kitchen-renovation.html">
@@ -634,7 +636,7 @@
     </section>
 
     <section id="experience">
-        <h3>Experience</h3>
+        <h2>Experience</h2>
 
         <div class="job">
             <div class="job-header">
@@ -666,7 +668,7 @@
     </section>
 
     <section id="skills">
-        <h3>Expertise</h3>
+        <h2>Expertise</h2>
         <div class="skills-grid">
             <div class="skill-cat">
                 <strong>Analytics & SEO</strong>

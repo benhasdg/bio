@@ -161,6 +161,15 @@
             background-clip: padding-box, border-box;
             padding-top: 2rem;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
