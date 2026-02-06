@@ -51,10 +51,8 @@ Example: `news/2026-kitchen-renovation.html`
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Title | Ben Heine</title>
     <link rel="icon" type="image/png" href="../favicon.png">
-    <style>
-        /* Copy the entire <style> block from an existing news article */
-        /* Example: news/2026-kitchen-renovation.html */
-    </style>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/article.css">
 </head>
 
 <body>
@@ -70,7 +68,8 @@ Example: `news/2026-kitchen-renovation.html`
 
         <!-- Single image with caption -->
         <div class="image-container">
-            <img src="assets/article-name-images/image.jpeg" alt="Descriptive alt text">
+            <img src="assets/article-name-images/image.jpeg" alt="Descriptive alt text"
+                data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog">
             <p class="image-caption">Caption describing the image</p>
         </div>
 
@@ -80,10 +79,12 @@ Example: `news/2026-kitchen-renovation.html`
         <div class="grid">
             <div>
                 <img src="assets/article-name-images/image1.jpeg" alt="Description"
+                    data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog"
                     style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
             </div>
             <div>
                 <img src="assets/article-name-images/image2.jpeg" alt="Description"
+                    data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog"
                     style="width:100%; border-radius:8px; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
             </div>
         </div>
@@ -98,27 +99,27 @@ Example: `news/2026-kitchen-renovation.html`
         </div>
     </article>
 
-    <!-- Lightbox overlay (required for click-to-zoom) -->
-    <div class="lightbox-overlay" id="lightbox">
+    <!-- Lightbox overlay (required for click-to-zoom on images) -->
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
         <img class="lightbox-image" id="lightbox-img" src="" alt="">
     </div>
 
-    <footer>&copy; 2026 Ben Heine. Crafted by MoltBot MB.</footer>
+    <footer>&copy; 2026 Ben Heine.</footer>
 
-    <script>
-        /* Copy the entire <script> block from an existing news article */
-        /* Includes theme toggle and lightbox functionality */
-    </script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/lightbox.js"></script>
 </body>
 
 </html>
 ```
 
+> **Note:** Styles are loaded from shared external CSS files (`shared.css` + `article.css`). Theme toggle and lightbox behavior come from external JS files. No need to copy inline `<style>` or `<script>` blocks.
+
 ---
 
 ## Step 4: Update Homepage
 
-Edit `index.html` and add your article link at the **top** of the news list (around line 332):
+Edit `index.html` and add your article link at the **top** of the news list (within `<section id="news">`):
 
 ```html
 <li class="news-item">

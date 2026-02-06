@@ -8,8 +8,8 @@ This workflow documents how to manage, edit, and publish content to this persona
 
 ## Website Overview
 
-**Technology:** Static HTML/CSS/JavaScript with dark mode support  
-**Deployment:** GitHub Pages via `https://github.com/benhasdg/bio.git`  
+**Technology:** Static HTML/CSS/JavaScript with dark mode support
+**Deployment:** GitHub Pages via `https://github.com/benhasdg/bio.git`
 **Design:** Modern, minimalist aesthetic with custom CSS variables for theming
 
 ### Site Structure
@@ -19,9 +19,15 @@ This workflow documents how to manage, edit, and publish content to this persona
 ├── index.html              # Main homepage/portfolio
 ├── favicon.png             # Site favicon
 ├── CNAME                   # Custom domain configuration
+├── css/                    # External stylesheets
+│   ├── shared.css          # Theme variables, base styles (all pages)
+│   ├── home.css            # Homepage-specific styles
+│   └── article.css         # Article page styles
+├── js/                     # External scripts
+│   ├── theme-toggle.js     # Dark/light theme toggle (all pages)
+│   └── lightbox.js         # Image click-to-zoom (article pages)
 ├── news/                   # News articles directory
 │   ├── 2026-kitchen-renovation.html
-│   ├── 2026-hub-launch.html
 │   ├── 2026-data-analytics.html
 │   ├── 2020-patio-project.html
 │   └── assets/            # Images and media for articles
@@ -35,22 +41,27 @@ This workflow documents how to manage, edit, and publish content to this persona
 
 ### Color Palette
 
-**Light Theme:**
-- Background: `#f2ebe1` (creamy white)
-- Text: `#111` (near black)
-- Accent: `#e9a65a` (warm orange)
-- Secondary: `#84a59d` (muted teal/sage)
+Defined as CSS custom properties in `css/shared.css`.
 
-**Dark Theme:**
-- Background: `#1a1c1c` (dark sage)
-- Text: `#f2ebe1` (creamy white)
-- Accent: `#f2bc7d` (lighter orange)
-- Secondary: `#a7c4bc` (lighter teal)
+**Dark Theme (default):**
+- Background: `#0f0f1a` (dark navy)
+- Text: `#ffffff` (white)
+- Accent: `#ff6b9d` (hot pink)
+- Secondary: `#c084fc` (purple)
+- Tertiary: `#22d3ee` (cyan)
+
+**Light Theme:**
+- Background: `#faf5ff` (light lavender)
+- Text: `#1e1b4b` (dark navy)
+- Accent: `#db2777` (deep pink)
+- Secondary: `#7c3aed` (purple)
+- Tertiary: `#0891b2` (teal)
 
 ### Typography
-- Primary font: Inter (with system font fallbacks)
-- Monospace: System monospace (for dates and technical content)
-- Large headings: 800 weight, tight letter spacing (-0.04em)
+- Primary font: Space Grotesk (with system font fallbacks)
+- Display font: Gasoek One (homepage name header)
+- Monospace: JetBrains Mono (for dates and technical content)
+- Large headings: 700 weight, tight letter spacing (-0.04em)
 
 ---
 
@@ -60,11 +71,11 @@ This workflow documents how to manage, edit, and publish content to this persona
 
 #### Update About Section
 
-**Location:** Lines 319-327
+Located within `<section id="about">`:
 
 ```html
 <section id="about">
-    <h3>About</h3>
+    <h2>About</h2>
     <p style="font-size: 1.2rem; font-weight: 400; color: var(--text);">
         [Your bio text here]
     </p>
@@ -73,7 +84,7 @@ This workflow documents how to manage, edit, and publish content to this persona
 
 #### Add News Item
 
-**Location:** Lines 329-357 (within `<section id="news">`)
+Located within `<section id="news">`:
 
 Add new items at the **top** of the `<ul class="news-list">` to maintain reverse chronological order:
 
@@ -90,7 +101,7 @@ Add new items at the **top** of the `<ul class="news-list">` to maintain reverse
 
 #### Update Experience
 
-**Location:** Lines 359-389 (within `<section id="experience">`)
+Located within `<section id="experience">`:
 
 Each job is contained in a `.job` div:
 
@@ -110,7 +121,7 @@ Each job is contained in a `.job` div:
 
 #### Update Skills
 
-**Location:** Lines 391-407 (within `<section id="skills">`)
+Located within `<section id="skills">`:
 
 ```html
 <div class="skill-cat">
@@ -144,7 +155,21 @@ Each job is contained in a `.job` div:
 
 ### Lightbox Functionality
 
-All article images automatically support click-to-zoom via the included JavaScript. No additional configuration needed.
+Article images support click-to-zoom via `js/lightbox.js`. To enable on an image, add these attributes:
+
+```html
+<img src="..." alt="..." data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog">
+```
+
+The article page must also include the lightbox overlay div and script:
+
+```html
+<!-- Before </body> -->
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <img class="lightbox-image" id="lightbox-img" src="" alt="">
+</div>
+<script src="../js/lightbox.js"></script>
+```
 
 ---
 
@@ -181,7 +206,7 @@ Example: *"Like refactoring legacy code, sometimes you need to go back to the fo
 ### Common Issues
 
 **Theme toggle not working:**
-- Ensure the JavaScript at the bottom of the page is present
+- Ensure `<script src="js/theme-toggle.js"></script>` (or `../js/...` for articles) is included before `</body>`
 - Check browser console for errors
 - Verify `id` attributes match: `theme-toggle`, `toggle-icon`
 
@@ -192,8 +217,8 @@ Example: *"Like refactoring legacy code, sometimes you need to go back to the fo
 
 **Lightbox not working:**
 - Confirm lightbox overlay div exists before closing `</body>`
-- Verify lightbox JavaScript is included
-- Check that images have the correct selectors: `.image-container img, .grid img`
+- Verify `<script src="../js/lightbox.js"></script>` is included
+- Check that images have `data-lightbox="true"` attribute
 
 **Site not updating after push:**
 - Wait 2-3 minutes for GitHub Pages deployment
@@ -211,6 +236,11 @@ Example: *"Like refactoring legacy code, sometimes you need to go back to the fo
 ### File Locations
 
 - **Homepage:** `index.html`
+- **Shared styles:** `css/shared.css` (theme vars, base styles for all pages)
+- **Homepage styles:** `css/home.css`
+- **Article styles:** `css/article.css`
+- **Theme toggle script:** `js/theme-toggle.js`
+- **Lightbox script:** `js/lightbox.js`
 - **News articles:** `news/*.html`
 - **Article images:** `news/assets/`
 - **Favicon:** `favicon.png` (root directory)
@@ -227,13 +257,17 @@ Example: *"Like refactoring legacy code, sometimes you need to go back to the fo
 
 ### Important Variables
 
+Defined in `css/shared.css`:
+
 ```css
 --bg: Background color
 --text: Primary text color
---accent: Warm orange accent (links, highlights)
---secondary: Teal/sage secondary color
+--accent: Pink accent (links, highlights)
+--secondary: Purple secondary color
+--tertiary: Cyan tertiary color
 --muted: Muted gray for dates and less important text
 --card-bg: Card/component background
+--glow: Glow/shadow accent color
 ```
 
 ---
@@ -245,30 +279,31 @@ Example: *"Like refactoring legacy code, sometimes you need to go back to the fo
 To add a new section to the homepage:
 
 1. Follow the existing `<section>` structure
-2. Use an `<h3>` heading with `::after` pseudo-element for the line effect
+2. Use an `<h2>` heading (the `::after` gradient line is applied automatically via `css/home.css`)
 3. Add appropriate `id` attribute for potential anchor links
 4. Maintain 5rem bottom margin for consistency
 
 ### Modifying the Color Scheme
 
-Edit the CSS custom properties in the `:root` and `[data-theme="dark"]` selectors:
+Edit the CSS custom properties in `css/shared.css` under `:root` and `[data-theme="light"]`:
 
 ```css
 :root {
-    --accent: #e9a65a;      /* Change accent color */
-    --secondary: #84a59d;    /* Change secondary color */
+    --accent: #ff6b9d;      /* Change accent color */
+    --secondary: #c084fc;    /* Change secondary color */
+    --tertiary: #22d3ee;     /* Change tertiary color */
     /* etc. */
 }
 ```
 
-All instances will update automatically.
+All instances across every page will update automatically since all pages link to `shared.css`.
 
 ### Creating Different Article Layouts
 
 You can create custom layouts by:
 - Using different grid configurations: `grid-template-columns: 1fr 1fr 1fr` for three columns
-- Adding custom CSS in the article's `<style>` block
-- Creating new wrapper classes for specific content types
+- Adding a page-specific `<style>` block in the article's `<head>` (after the CSS `<link>` tags) for one-off overrides
+- Creating new wrapper classes in `css/article.css` for reusable content types
 
 ---
 

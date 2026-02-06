@@ -46,6 +46,8 @@ git add .
 **Stage specific files:**
 ```bash
 git add index.html
+git add css/shared.css css/home.css css/article.css
+git add js/theme-toggle.js js/lightbox.js
 git add news/2026-my-article.html
 git add news/assets/article-images/
 ```

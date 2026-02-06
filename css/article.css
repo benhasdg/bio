@@ -65,6 +65,7 @@ article p {
 
 .image-container img {
     width: 100%;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border);
@@ -72,6 +73,7 @@ article p {
 
 .image-container video {
     width: 100%;
+    height: auto;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border);
@@ -90,6 +92,13 @@ article p {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin: 2rem 0;
+}
+
+.grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 footer {
