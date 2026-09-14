@@ -1,0 +1,147 @@
+# Ben Heine Personal Website
+
+Static personal/portfolio website for Ben Heine, deployed with GitHub Pages at `www.bheine.net` from the GitHub repository `https://github.com/benhasdg/bio.git`.
+
+## What this project is
+
+This is a lightweight static site built with plain HTML, CSS, and JavaScript. There is no build system, package manager, framework, or server-side code required.
+
+Main features:
+
+- Portfolio/resume homepage
+- News/article pages
+- Dark/light theme toggle
+- Click-to-zoom lightbox for article images
+- GitHub Pages deployment using the root-level `CNAME` file
+
+## Design: "The Workshop"
+
+A warm, craftsman-inspired redesign — modern yet cozy, masculine yet welcoming, professional yet playful.
+
+- **Palette:** warm charcoal / cream backgrounds with amber (`--accent`), moss green (`--moss`), and terracotta rust (`--rust`) accents. Two themes: "evening workshop" (dark, default) and "morning study" (light). Theme follows system preference unless toggled.
+- **Type:** Fraunces (serif display, headings, drop caps), Inter (body), IBM Plex Mono (dates, labels, footer).
+- **Signature details:** paper-grain texture overlay, hand-drawn squiggle underline in the header, table-of-contents dotted leaders in the Field Notes list, numbered section headings (`01 About` …), drop cap on each article's opening paragraph, highlighter-marks in the About text.
+- All design tokens live in `css/shared.css` under `:root` (dark) and `[data-theme="light"]`.
+
+## Project structure
+
+```text
+2607personalSite2/
+├── index.html                     # Homepage / portfolio page
+├── CNAME                          # Custom domain: www.bheine.net
+├── favicon.png                    # Site icon
+├── css/
+│   ├── shared.css                 # Global theme variables and base styles
+│   ├── home.css                   # Homepage-specific styles
+│   └── article.css                # Article/news page styles
+├── js/
+│   ├── theme-toggle.js            # Dark/light mode behavior
+│   └── lightbox.js                # Article image lightbox behavior
+├── news/
+│   ├── 2020-patio-project.html
+│   ├── 2026-data-analytics.html
+│   ├── 2026-kitchen-renovation.html
+│   └── assets/                    # Article media
+└── .agent/workflows/              # Editing/deploy workflow notes
+```
+
+## Editing the site
+
+### Homepage
+
+Edit `index.html` for:
+
+- About text
+- Contact links
+- News links
+- Experience
+- Expertise/skills
+- Footer text
+
+Homepage styling lives in:
+
+- `css/shared.css` for global colors, typography, and base styles
+- `css/home.css` for homepage layout and animations
+
+### Articles
+
+Article files live in `news/`.
+
+Current articles:
+
+- `news/2026-kitchen-renovation.html`
+- `news/2026-data-analytics.html`
+- `news/2020-patio-project.html`
+
+Article styling lives in `css/article.css`.
+
+When adding an article:
+
+1. Create a new `news/YYYY-article-slug.html` file.
+2. Add related images/video under `news/assets/`.
+3. Add the article link to the News section in `index.html`.
+4. Test image paths and theme/lightbox behavior locally.
+
+More detailed article instructions are in `.agent/workflows/publish-article.md`.
+
+## Local preview
+
+Because this is a static site, you can open `index.html` directly in a browser.
+
+For a better local preview from the project root:
+
+```bash
+python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/
+```
+
+## Deployment
+
+Deployment is via GitHub Pages. Standard workflow:
+
+```bash
+git status
+git add .
+git commit -m "Describe the website update"
+git push origin main
+```
+
+GitHub Pages should publish the update after a few minutes.
+
+Detailed deployment notes are in `.agent/workflows/deploy.md`.
+
+## Media notes
+
+Keep article media optimized for the web. Target less than 500 KB per image when possible.
+
+Current active media includes:
+
+- Patio project images in `news/assets/`
+- Kitchen renovation images/video in `news/assets/kitchenrenoimages/`
+
+The kitchen renovation video uses the MP4 version only: `countertop2.mp4`.
+
+## Cleanup performed
+
+Unused/unreferenced media was removed from the project:
+
+- `news/assets/patio-progress-2.jpg`
+- `news/assets/kitchenrenoimages/IMG_1998 Large.jpeg`
+- `news/assets/kitchenrenoimages/IMG_2026 Large.jpeg`
+- `news/assets/kitchenrenoimages/IMG_2144 Large.jpeg`
+- `news/assets/kitchenrenoimages/IMG_2148 Large.jpeg`
+- `news/assets/kitchenrenoimages/countertop2.mov`
+
+`countertop2.mov` duplicated the MP4 video purpose and was much larger, so the article now uses only `countertop2.mp4`.
+
+## Notes for future maintenance
+
+- Keep `CNAME` if using `www.bheine.net`.
+- Keep `.gitignore`; it currently ignores `.DS_Store`.
+- Keep `.agent/workflows/` unless you no longer want the local workflow documentation.
+- When removing media, search the HTML files first to confirm the asset is not referenced.
