@@ -18,7 +18,8 @@ Main features:
 A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites. White page, plain blue links, thin rules. No dark mode, images, effects or web fonts.
 
 - **Type:** Georgia for reading and headings, Verdana for dates, captions and the sidebar (system fonts).
-- **Structure:** the homepage is a run of dated entries (Notes), followed by Experience and Skills as undated entries. The sidebar holds About and Elsewhere. Articles are single posts with framed photos.
+- **Structure:** the homepage has About, Experience, Skills, then the four newest posts as a list. `blog.html` holds every post as a dated entry. The sidebar holds Elsewhere. Articles are single posts with framed photos.
+- **Dark mode:** a toggle in the nav (`js/theme.js`). A small inline script in each page's `<head>` applies the saved choice, or the system setting, before the page paints.
 - Design tokens live in `css/shared.css` under `:root`.
 
 ## Project structure
@@ -80,7 +81,7 @@ When adding an article:
 
 1. Create a new `news/YYYY-article-slug.html` file.
 2. Add related images/video under `news/assets/`.
-3. Add the article link to the News section in `index.html`.
+3. Add the post to `blog.html`, and to the Recent posts list in `index.html` (keep it at four).
 4. Test image paths and theme/lightbox behavior locally.
 
 More detailed article instructions are in `.agent/workflows/publish-article.md`.

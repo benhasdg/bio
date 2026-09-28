@@ -140,11 +140,56 @@
 }
 
 /* Undated sections get a real heading instead of a date line */
+#about .date-head,
 #experience .date-head,
-#skills .date-head {
+#skills .date-head,
+#recent .date-head {
     font-family: var(--serif);
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--heading);
     border-bottom-color: var(--heading);
+}
+
+#about p {
+    margin: 0;
+}
+
+/* ------------------------------------------------ recent posts list */
+
+.recent {
+    margin: 0 0 0.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.recent li {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.3rem 0;
+}
+
+.recent .when {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding-top: 0.2rem;
+}
+
+/* ------------------------------------------------ blog page */
+
+.page-title {
+    margin: 0 0 1.25rem;
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: var(--heading);
+}
+
+@media (max-width: 720px) {
+    .recent li {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }

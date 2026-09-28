@@ -43,7 +43,7 @@ article p {
     width: 100%;
     height: auto;
     padding: 4px;
-    background: #fff;
+    background: var(--frame);
     border: 1px solid var(--rule);
 }
 
