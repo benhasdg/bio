@@ -1,350 +1,150 @@
-body {
-    max-width: 760px;
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 2.5rem;
+    align-items: start;
 }
 
-/* ------------------------------------------------ header */
+/* ------------------------------------------------ entries */
 
-header {
-    margin-bottom: 4.5rem;
-}
-
-.kicker {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
+.date-head {
+    margin: 0 0 0.6rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
     color: var(--muted);
-    margin: 0 0 1rem;
 }
 
-.kicker::before {
-    content: '● ';
-    color: var(--moss);
+.entry {
+    margin-bottom: 2.25rem;
 }
 
-h1.site-name {
-    font-family: 'Fraunces', Georgia, serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
-    font-size: clamp(3.4rem, 11vw, 5.8rem);
-    line-height: 1;
-    letter-spacing: -0.025em;
+.entry h2.title,
+.entry h3 {
+    font-family: var(--serif);
     color: var(--heading);
+}
+
+.entry h2.title {
+    margin: 0 0 0.35rem;
+    font-size: 1.4rem;
+    line-height: 1.25;
+}
+
+.entry h2.title a {
+    text-decoration: none;
+}
+
+.entry h2.title a:hover {
+    text-decoration: underline;
+}
+
+.entry p {
     margin: 0 0 0.75rem;
 }
 
-h1.site-name em {
-    font-style: italic;
-    font-weight: 700;
-    color: var(--accent);
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-h1.site-name:hover em {
-    transform: rotate(-2deg) translateY(-3px);
-}
-
-.squiggle {
-    display: block;
-    width: 160px;
-    height: 8px;
-    background: var(--squiggle) repeat-x;
-    margin: 0.25rem 0 1.75rem;
-}
-
-.tagline {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-size: 1.25rem;
+.entry .more {
+    font-family: var(--sans);
+    font-size: 0.75rem;
     color: var(--muted);
-    margin: 0 0 1.75rem;
-    max-width: 34ch;
-    line-height: 1.5;
 }
 
-.contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    align-items: center;
-    font-size: 0.88rem;
+/* Work history and skills are entries without dates */
+
+.entry.plain {
+    padding-top: 0.5rem;
 }
-
-.contact .locale {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-right: 0.35rem;
-}
-
-.contact a {
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 500;
-    padding: 0.35rem 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--surface);
-    transition: all 0.25s ease;
-}
-
-.contact a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: var(--card-shadow);
-}
-
-/* ------------------------------------------------ sections */
-
-section {
-    margin-bottom: 4.5rem;
-}
-
-h2 {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 700;
-    font-size: 1.55rem;
-    letter-spacing: -0.01em;
-    color: var(--heading);
-    margin: 0 0 1.75rem;
-}
-
-h2 .h2-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: var(--rust);
-    letter-spacing: 0.1em;
-}
-
-h2::after {
-    content: '';
-    flex: 1;
-    border-bottom: 2px dotted var(--border);
-    transform: translateY(-6px);
-}
-
-#about p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    margin: 0;
-}
-
-#about strong {
-    color: var(--heading);
-}
-
-.hl {
-    background: linear-gradient(transparent 55%, var(--highlight) 55%);
-    padding: 0 0.15em;
-    border-radius: 2px;
-}
-
-/* ------------------------------------------------ news: table-of-contents style */
-
-.news-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.news-item + .news-item {
-    margin-top: 0.35rem;
-}
-
-.news-item a {
-    display: flex;
-    align-items: baseline;
-    gap: 0.85rem;
-    padding: 0.85rem 0.75rem;
-    text-decoration: none;
-    color: var(--text);
-    border-radius: 10px;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.news-item a:hover {
-    background: var(--surface);
-    transform: translateX(6px);
-}
-
-.news-title {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 500;
-    font-size: 1.12rem;
-    color: var(--heading);
-    transition: color 0.2s ease;
-}
-
-.news-item a:hover .news-title {
-    color: var(--accent);
-}
-
-.news-item .leader {
-    flex: 1;
-    border-bottom: 2px dotted var(--border);
-    transform: translateY(-4px);
-    min-width: 2rem;
-}
-
-.news-date {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    white-space: nowrap;
-}
-
-/* ------------------------------------------------ experience */
 
 .job {
-    position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
-    border-radius: 12px;
-    padding: 1.6rem 1.75rem;
     margin-bottom: 1.5rem;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.job:nth-child(odd) {
-    border-left-color: var(--moss);
+.job h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.3;
 }
 
-.job:hover {
-    transform: translateY(-3px) rotate(-0.3deg);
-}
-
-.job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 0.25rem;
-}
-
-.job-title {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: var(--heading);
-}
-
-.job-date {
-    font-family: 'IBM Plex Mono', monospace;
+.job .where {
+    margin: 0 0 0.5rem;
+    font-family: var(--sans);
     font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.7rem;
-    border-radius: 999px;
-    white-space: nowrap;
+    color: var(--muted);
 }
 
-.job-company {
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: var(--rust);
+.job ul,
+.skill-list {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.job li,
+.skill-list li {
     margin-bottom: 0.35rem;
 }
 
-.job ul {
-    margin: 0.75rem 0 0;
-    padding-left: 1.2rem;
-    color: var(--text);
-}
-
-.job li {
-    margin-bottom: 0.5rem;
-}
-
-.job li::marker {
-    content: '— ';
-    color: var(--accent);
-}
-
-/* ------------------------------------------------ skills: the toolbox */
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
-}
-
-.skill-cat {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.35rem 1.4rem;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.skill-cat:nth-child(1) { border-top: 3px solid var(--accent); }
-.skill-cat:nth-child(2) { border-top: 3px solid var(--moss); }
-.skill-cat:nth-child(3) { border-top: 3px solid var(--rust); }
-
-.skill-cat:hover {
-    transform: translateY(-4px) rotate(0.4deg);
-    border-color: var(--accent);
-}
-
-.skill-cat strong {
-    display: block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 500;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-}
-
-.skill-cat span {
-    font-size: 0.95rem;
-    font-weight: 500;
+.skill-list strong {
+    font-weight: 700;
     color: var(--heading);
+}
+
+/* ------------------------------------------------ sidebar */
+
+.sidebar {
+    font-family: var(--sans);
+    font-size: 0.8125rem;
     line-height: 1.55;
 }
 
-/* ------------------------------------------------ footer */
-
-footer {
-    margin-top: 6rem;
-    padding-top: 2rem;
-    border-top: 2px dotted var(--border);
+.sidebar h2 {
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--heading);
 }
 
-footer p {
+.sidebar section {
+    margin-bottom: 1.75rem;
+}
+
+.sidebar p {
     margin: 0;
+}
+
+.sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 0.3rem;
 }
 
 /* ------------------------------------------------ responsive */
 
-@media (max-width: 600px) {
-    .news-item a {
-        flex-wrap: wrap;
-        gap: 0.35rem;
+@media (max-width: 720px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .news-item .leader {
-        display: none;
+    .wordmark {
+        font-size: 2rem;
     }
+}
 
-    .news-date {
-        width: 100%;
-    }
-
-    .job-header {
-        flex-direction: column;
-        gap: 0.4rem;
-    }
+/* Undated sections get a real heading instead of a date line */
+#experience .date-head,
+#skills .date-head {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--heading);
+    border-bottom-color: var(--heading);
 }

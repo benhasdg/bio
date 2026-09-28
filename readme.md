@@ -10,18 +10,16 @@ Main features:
 
 - Portfolio/resume homepage
 - News/article pages
-- Dark/light theme toggle
 - Click-to-zoom lightbox for article images
 - GitHub Pages deployment using the root-level `CNAME` file
 
-## Design: "The Workshop"
+## Design: weblog, circa 2005
 
-A warm, craftsman-inspired redesign — modern yet cozy, masculine yet welcoming, professional yet playful.
+A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites. White page, plain blue links, thin rules. No dark mode, images, effects or web fonts.
 
-- **Palette:** warm charcoal / cream backgrounds with amber (`--accent`), moss green (`--moss`), and terracotta rust (`--rust`) accents. Two themes: "evening workshop" (dark, default) and "morning study" (light). Theme follows system preference unless toggled.
-- **Type:** Fraunces (serif display, headings, drop caps), Inter (body), IBM Plex Mono (dates, labels, footer).
-- **Signature details:** paper-grain texture overlay, hand-drawn squiggle underline in the header, table-of-contents dotted leaders in the Field Notes list, numbered section headings (`01 About` …), drop cap on each article's opening paragraph, highlighter-marks in the About text.
-- All design tokens live in `css/shared.css` under `:root` (dark) and `[data-theme="light"]`.
+- **Type:** Georgia for reading and headings, Verdana for dates, captions and the sidebar (system fonts).
+- **Structure:** the homepage is a run of dated entries (Notes), followed by Experience and Skills as undated entries. The sidebar holds About and Elsewhere. Articles are single posts with framed photos.
+- Design tokens live in `css/shared.css` under `:root`.
 
 ## Project structure
 
@@ -35,7 +33,6 @@ A warm, craftsman-inspired redesign — modern yet cozy, masculine yet welcoming
 │   ├── home.css                   # Homepage-specific styles
 │   └── article.css                # Article/news page styles
 ├── js/
-│   ├── theme-toggle.js            # Dark/light mode behavior
 │   └── lightbox.js                # Article image lightbox behavior
 ├── news/
 │   ├── 2020-patio-project.html
@@ -69,6 +66,10 @@ Article files live in `news/`.
 
 Current articles:
 
+- `news/2026-long-receipt.html`
+- `news/2026-embiggen.html`
+- `news/2026-tump.html`
+- `news/2026-tickr.html`
 - `news/2026-kitchen-renovation.html`
 - `news/2026-data-analytics.html`
 - `news/2020-patio-project.html`
@@ -121,6 +122,7 @@ Keep article media optimized for the web. Target less than 500 KB per image when
 
 Current active media includes:
 
+- Tickr post images in `news/assets/tickr/`
 - Patio project images in `news/assets/`
 - Kitchen renovation images/video in `news/assets/kitchenrenoimages/`
 
@@ -145,3 +147,7 @@ Unused/unreferenced media was removed from the project:
 - Keep `.gitignore`; it currently ignores `.DS_Store`.
 - Keep `.agent/workflows/` unless you no longer want the local workflow documentation.
 - When removing media, search the HTML files first to confirm the asset is not referenced.
+
+## GIFs
+
+Posts embed GIFs with Tenor's official embed (`div.tenor-gif-embed` plus `https://tenor.com/embed.js`), so no GIF files are stored in the repo. Without JavaScript the embed falls back to a plain link.

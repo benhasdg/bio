@@ -1,150 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
 /* ---------------------------------------------------------------
-   Design: "The Workshop" — modern & cozy, masculine & welcoming.
-   Warm charcoal, amber, moss and rust on cream. Serif headlines,
-   dotted leaders, drop caps, paper-grain texture.
+   Design: a personal weblog, circa 2005.
+   White page, Georgia for reading, Verdana for the small print,
+   plain blue links, one narrow column plus a sidebar. System fonts
+   only, no images, no effects.
    --------------------------------------------------------------- */
 
 :root {
-    /* Evening workshop (default, dark) */
-    --bg: #211c17;
-    --surface: #2b2420;
-    --surface-2: #352d26;
-    --text: #ece3d2;
-    --heading: #f7efdd;
-    --muted: #a89c88;
-    --accent: #e0a44c;      /* amber */
-    --moss: #a3b56d;        /* moss green */
-    --rust: #cd7050;        /* terracotta rust */
-    --border: #453b30;
-    --card-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 12px 32px rgba(0, 0, 0, 0.18);
-    --highlight: rgba(224, 164, 76, 0.22);
-    --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0.5 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%23e0a44c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-}
+    --bg: #fff;
+    --text: #222;
+    --heading: #000;
+    --muted: #666;
+    --rule: #ccc;
+    --link: #2a5db0;
+    --visited: #6b3fa0;
+    --hover: #b3261e;
 
-[data-theme="light"] {
-    /* Morning study (light) */
-    --bg: #f6efe1;
-    --surface: #fffdf6;
-    --surface-2: #f1e7d4;
-    --text: #38302a;
-    --heading: #241f19;
-    --muted: #857767;
-    --accent: #b06d20;
-    --moss: #5f7038;
-    --rust: #a8492a;
-    --border: #ddcfb6;
-    --card-shadow: 0 2px 4px rgba(90, 70, 40, 0.08), 0 10px 28px rgba(90, 70, 40, 0.1);
-    --highlight: rgba(176, 109, 32, 0.16);
-    --squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q5 0.5 10 4 T20 4 T30 4 T40 4' fill='none' stroke='%23b06d20' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: Verdana, Geneva, Tahoma, sans-serif;
+
+    --page: 50rem;
+    --gutter: 1.5rem;
 }
 
 * {
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.75;
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.6;
     color: var(--text);
     background: var(--bg);
+}
+
+.page {
+    max-width: var(--page);
     margin: 0 auto;
-    padding: 4.5rem 2rem;
-    transition: background 0.35s ease, color 0.35s ease;
-}
-
-/* Paper grain */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: -1;
-}
-
-::selection {
-    background: var(--accent);
-    color: var(--bg);
+    padding: 0 var(--gutter);
 }
 
 a {
-    color: var(--accent);
+    color: var(--link);
 }
 
-a:focus-visible,
-button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    border-radius: 4px;
+a:visited {
+    color: var(--visited);
 }
 
-/* Theme toggle — a little brass switch */
-.theme-toggle {
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    width: 42px;
-    height: 42px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.1rem;
-    line-height: 1;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--card-shadow);
-    z-index: 100;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+a:hover {
+    color: var(--hover);
 }
 
-.theme-toggle:hover {
-    transform: rotate(-12deg) scale(1.08);
-    border-color: var(--accent);
+a:focus-visible {
+    outline: 2px solid var(--hover);
+    outline-offset: 2px;
 }
 
-.theme-toggle:active {
-    transform: scale(0.94);
+::selection {
+    background: #ffe9a8;
+    color: #000;
 }
+
+/* ------------------------------------------------ masthead */
+
+.masthead {
+    padding: 2rem 0 0.75rem;
+    border-bottom: 1px solid var(--heading);
+    margin-bottom: 2rem;
+}
+
+.wordmark {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.wordmark a,
+.wordmark a:visited {
+    color: var(--heading);
+    text-decoration: none;
+}
+
+.wordmark a:hover {
+    color: var(--hover);
+}
+
+.tagline {
+    margin: 0.25rem 0 1rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.menu {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+}
+
+.menu a {
+    margin: 0 0.5em;
+}
+
+.menu a:first-child {
+    margin-left: 0;
+}
+
+.menu .bar {
+    color: var(--rule);
+}
+
+/* ------------------------------------------------ footer */
 
 footer {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
+    margin-top: 3rem;
+    padding: 1rem 0 2.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.75rem;
     color: var(--muted);
-    text-align: center;
 }
 
-@media (max-width: 600px) {
-    body {
-        padding: 3rem 1.25rem;
-    }
-
-    .theme-toggle {
-        top: 1rem;
-        right: 1rem;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        transition: none !important;
-    }
-
-    html {
-        scroll-behavior: auto;
-    }
+footer p {
+    margin: 0;
 }

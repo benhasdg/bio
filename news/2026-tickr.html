@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Tickr, a Morning Briefing for a Receipt Printer | Ben Heine</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/article.css">
+</head>
+
+<body>
+    <div class="page">
+        <header class="masthead">
+            <p class="wordmark"><a href="/">bheine.net</a></p>
+            <p class="tagline">Ben Heine: web communications and digital operations in Birmingham, AL</p>
+            <nav class="menu" aria-label="Site">
+                <a href="/">home</a><span class="bar" aria-hidden="true">|</span><a href="/#notes">notes</a><span class="bar" aria-hidden="true">|</span><a href="/#experience">experience</a><span class="bar" aria-hidden="true">|</span><a href="/#skills">skills</a><span class="bar" aria-hidden="true">|</span><a href="mailto:rbheine@gmail.com">email</a>
+            </nav>
+        </header>
+
+        <div class="post">
+        <time class="date-head" datetime="2026-09-28" style="display:block">Monday, September 28, 2026</time>
+        <h1>Building Tickr, a Morning Briefing for a Receipt Printer</h1>
+
+        <article>
+
+        <p>Every morning a strip of thermal paper comes out of a receipt printer with the day's calendar, the weather, the to-do list, a comic, and a page of things for a small person to trace and colour. Tear it off, stick it on the fridge, get on with the day. There is no app to open and nothing that buzzes. That's the whole idea, and it is called Tickr.</p>
+
+        <div class="image-container">
+            <img src="assets/tickr/printout-angled.jpg" alt="Thermal paper strip showing a to-do list, an hourly weather forecast with outline icons, and Hacker News summaries" width="1200" height="897" decoding="async" data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog">
+            <p class="image-caption">A real morning printout.</p>
+        </div>
+
+        <h2>It started as a script</h2>
+
+        <p>The first version was called Breaklist. It was one Go program, about 2,100 lines, that did everything in a row: pull headlines from the New York Times (scraped from a digest page), top stories from Hacker News, events from Google Calendar, the weather, tasks from a Dropbox file, a joke from a joke API, and a random Far Side strip from a folder on disk. It filled an HTML template, converted it to a 47&nbsp;mm-wide grayscale PDF with wkhtmltopdf, and printed it.</p>
+
+        <p>It worked, but it was built for one machine. The sections were wired into <code>main.go</code>, the Far Side folder and the wkhtmltopdf location were absolute Windows paths, and reminders were cron-style lines in a text file. Adding a section meant editing the program.</p>
+
+        <h2>Rewriting it as a tool</h2>
+
+        <p>The second version, Breaklist 2 and then Tickr, flipped the design. Every section is a small module that implements two methods: one that describes its options, and one that returns an HTML fragment. Register it and the settings form appears in a web interface automatically. Run <code>tickr open</code> and you get a page where you switch sections on and off, drag them into order, connect services, and set a schedule.</p>
+
+        <div class="image-container">
+            <img src="assets/tickr/layout-editor.png" alt="The layout editor: a list of report sections with checkboxes, categories and drag handles" width="970" height="955" loading="lazy" decoding="async" data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog">
+            <p class="image-caption">The layout editor, still under its old name Breaklist.</p>
+        </div>
+
+        <p>It grew to 45 sections and about 12,700 lines of Go, plus tests for the parts that could break quietly: the config store, the scheduler, the reminder matcher and the maze generator. It is still one binary with no build step for the interface.</p>
+
+        <h2>Paper is the hard part</h2>
+
+        <p>Some of the most stubborn problems sat between the PDF and the paper, and they all failed silently. The development notes use an Epson TM-T20II as the worked example:</p>
+
+        <ul>
+            <li>Its Windows driver declares an 80&nbsp;mm roll, but only about 72&nbsp;mm is printable, starting 3&nbsp;mm in from the left edge. Set the width past that and the right edge is clipped.</li>
+            <li>Its default paper form is a fixed 297&nbsp;mm long. Anything taller is cut off with no error anywhere. wkhtmltopdf, the print command and Windows all report success. The fix is a different form in Windows&rsquo; own printer preferences.</li>
+            <li>Printing through Adobe Acrobat ignores the PDF&rsquo;s page size and vertically centres the content on the current form. Combined with the long form, a normal report printed after several feet of blank paper. Tickr now prints with SumatraPDF, which uses each PDF&rsquo;s exact size.</li>
+        </ul>
+
+        <p>The way out was a millimetre ruler test strip, printed through the same path as a real report, and reading the numbers off the paper. Estimates eyeballed from a curled receipt ran one and a half to two times the driver&rsquo;s own figures, and the driver was right.</p>
+
+        <p>Tickr also measures the page instead of guessing: it renders the content once to an image to get the exact height, then renders the PDF at that height, so the strip is exactly as long as what is on it.</p>
+
+        <h2>A thermal printer prints in black or white</h2>
+
+        <p>Weather icons in colour turn to mud on a 1-bit printer, so Tickr draws its own outline glyphs as inline SVG, mapped from the weather service&rsquo;s condition codes. The hourly forecast on the strip is the result. Photos are cropped around a detected face, resized and dithered before printing.</p>
+
+        <div class="image-container narrow">
+            <img src="assets/tickr/printout-strip.jpg" alt="A full printed strip: to-do list, hourly weather with outline icons, and news items" width="417" height="1080" loading="lazy" decoding="async" data-lightbox="true" role="button" tabindex="0" aria-haspopup="dialog">
+            <p class="image-caption">Tasks, an hourly forecast, and news.</p>
+        </div>
+
+        <h2>Making the flaky parts dependable</h2>
+
+        <p>A morning printout depends on things that break at 6 a.m.: a feed that moved, a venue&rsquo;s site down for the night. The local events section handles that in layers. Each source is fetched separately with three retries, waiting 1, 3 and 9 seconds. Every source's last good result is cached, so a failure falls back to it and the printout gets a small &ldquo;(1 source unavailable)&rdquo; note instead of a hole. A source that keeps failing gets paused, for 10 minutes and then longer, up to 12 hours, so one dead feed doesn't add 25 seconds to every run. And if nothing is available at all, the section is skipped and everything else still prints.</p>
+
+        <p>There is also a page for the small person in the house: a letter and a number to trace, stars to count, a shape to colour, and a fresh maze every day. The mazes are made with a recursive backtracker, and the tests check that every one can be solved.</p>
+
+        <div class="gif-embed">
+            <div class="tenor-gif-embed" data-postid="14532429" data-share-method="host" data-aspect-ratio="1.78771" data-width="100%"><a href="https://tenor.com/view/recibo-receipt-roll-paper-gif-14532429">Recibo Receipt GIF</a></div>
+            <p class="image-caption">Not my printer, but the right feeling. GIF via Tenor.</p>
+        </div>
+
+        <h2>What it is for</h2>
+
+        <p>Tickr is a low-tech way to start the day. The information is the same as a phone would give you, but on a slip of paper that stays put, with no notifications and no screen. You can also send it a one-off note to print, through a Telegram bot or an authenticated HTTP call.</p>
+
+        <p>Why paper at all? That story starts at a drugstore checkout and a kitchen line. I wrote it up in <a href="2026-long-receipt.html">The Long Receipt</a>.</p>
+
+        <script async src="https://tenor.com/embed.js"></script>
+        </article>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Ben Heine</p>
+        </footer>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" aria-hidden="true" tabindex="-1">
+        <img class="lightbox-image" id="lightbox-img" src="" alt="">
+    </div>
+    <script src="../js/lightbox.js"></script>
+
+</body>
+
+</html>
