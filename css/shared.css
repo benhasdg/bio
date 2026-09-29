@@ -171,13 +171,24 @@ footer p {
 }
 
 /* ------------------------------------------------ get twisted
-   A spinning, colour-cycling background behind the page. The content sits
-   on a solid panel so it stays readable. No fast flashing: the fastest
-   cycle is several seconds. */
+   The whole viewport is the effect: a WebGL shader (js/twist.js) on a
+   fixed canvas, with pulsing rings blended over it. Without WebGL a CSS
+   pinwheel stands in. Text sits straight on top, white with a black
+   outline so it reads over anything. Colours shift over seconds, never
+   in fast flashes. */
 
 html.twisted body {
     background: #000;
     overflow-x: hidden;
+}
+
+.twist-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
 }
 
 html.twisted body::before,
@@ -187,8 +198,8 @@ html.twisted body::after {
     pointer-events: none;
 }
 
-/* Spinning pinwheel, cycling through the colour wheel */
-html.twisted body::before {
+/* Fallback pinwheel, only when the shader isn't running */
+html.twisted:not(.twist-gl) body::before {
     inset: -75vmax;
     z-index: -2;
     background: repeating-conic-gradient(from 0deg,
@@ -199,25 +210,51 @@ html.twisted body::before {
     animation: twist-spin 14s linear infinite, twist-hue 6s linear infinite;
 }
 
-/* Pulsing rings laid over the pinwheel and inverted against it */
+/* Pulsing rings, inverted against whatever is underneath */
 html.twisted body::after {
-    inset: 0;
+    inset: -25vmax;
     z-index: -1;
     background: repeating-radial-gradient(circle at 50% 50%,
-            transparent 0 22px,
-            rgba(255, 255, 255, 0.9) 22px 30px);
+            transparent 0 26px,
+            rgba(255, 255, 255, 0.85) 26px 32px);
     mix-blend-mode: difference;
-    animation: twist-pulse 5s ease-in-out infinite alternate;
+    animation: twist-pulse 5s ease-in-out infinite alternate, twist-spin 23s linear infinite reverse;
 }
 
-html.twisted .page {
-    position: relative;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    background: var(--bg);
-    border: 4px ridge #ff00c8;
-    box-shadow: 10px 10px 0 #000;
-    transform: rotate(-1deg);
+html.twisted .page,
+html.twisted .page * {
+    color: #fff;
+    text-shadow:
+        -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+        0 0 6px #000, 0 0 12px #000;
+}
+
+html.twisted .page a,
+html.twisted .page a *,
+html.twisted .theme-toggle {
+    color: #ffe600;
+}
+
+html.twisted .page a:visited {
+    color: #7dffea;
+}
+
+html.twisted .page a:hover,
+html.twisted .theme-toggle:hover {
+    color: #ff5ce1;
+}
+
+html.twisted .masthead,
+html.twisted .date-head,
+html.twisted .sidebar h2,
+html.twisted footer {
+    border-color: #fff;
+}
+
+html.twisted .wordmark,
+html.twisted h1,
+html.twisted h2 {
+    animation: twist-wobble 3.7s ease-in-out infinite alternate;
 }
 
 @keyframes twist-spin {
@@ -229,21 +266,22 @@ html.twisted .page {
 }
 
 @keyframes twist-pulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.6); }
+    from { scale: 1; }
+    to { scale: 1.5; }
+}
+
+@keyframes twist-wobble {
+    from { transform: rotate(-1.5deg) skewX(-3deg); }
+    to { transform: rotate(1.5deg) skewX(3deg); }
 }
 
 /* Keep the graphics, drop the motion */
 @media (prefers-reduced-motion: reduce) {
     html.twisted body::before,
-    html.twisted body::after {
+    html.twisted body::after,
+    html.twisted .wordmark,
+    html.twisted h1,
+    html.twisted h2 {
         animation: none;
-    }
-}
-
-@media (max-width: 720px) {
-    html.twisted .page {
-        margin: 1rem 0.5rem;
-        transform: none;
     }
 }

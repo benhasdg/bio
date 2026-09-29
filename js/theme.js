@@ -23,7 +23,8 @@
     label();
 })();
 
-// "Get twisted": a loud animated background. Remembered like the theme.
+// "Get twisted": a loud animated background. Deliberately not remembered,
+// so reloading the page always turns it off.
 (() => {
     const root = document.documentElement;
     const button = document.getElementById('twist-toggle');
@@ -34,10 +35,11 @@
     };
 
     button.addEventListener('click', () => {
-        const on = root.classList.toggle('twisted');
-        try { localStorage.setItem('twisted', on ? 'on' : 'off'); } catch (e) {}
+        root.classList.toggle('twisted');
         label();
     });
 
+    // Clear the setting older versions of this script saved
+    try { localStorage.removeItem('twisted'); } catch (e) {}
     label();
 })();

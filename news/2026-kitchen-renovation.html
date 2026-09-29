@@ -14,9 +14,6 @@
             if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
-            if (localStorage.getItem('twisted') === 'on') {
-                document.documentElement.classList.add('twisted');
-            }
         } catch (e) {}
     </script>
 </head>
@@ -118,6 +115,7 @@
     <script src="../js/lightbox.js"></script>
 
     <script src="../js/theme.js"></script>
+    <script src="../js/twist.js"></script>
 </body>
 
 </html>
