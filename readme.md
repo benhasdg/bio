@@ -20,6 +20,7 @@ A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites
 - **Type:** Georgia for reading and headings, Verdana for dates, captions and the sidebar (system fonts).
 - **Structure:** the homepage has About, Experience, Skills, then the four newest posts as a list. `blog.html` holds every post as a dated entry. The sidebar holds Elsewhere. Articles are single posts with framed photos.
 - **Dark mode:** a toggle in the nav (`js/theme.js`). A small inline script in each page's `<head>` applies the saved choice, or the system setting, before the page paints.
+- **Get twisted:** the nav's "get twisted" link turns on a spinning, colour-cycling background behind the page (`html.twisted` in `css/shared.css`). It's remembered like the theme, and it holds still for visitors who prefer reduced motion.
 - Design tokens live in `css/shared.css` under `:root`.
 
 ## Project structure

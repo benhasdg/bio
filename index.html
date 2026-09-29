@@ -16,6 +16,9 @@
             if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
+            if (localStorage.getItem('twisted') === 'on') {
+                document.documentElement.classList.add('twisted');
+            }
         } catch (e) {}
     </script>
 </head>
@@ -27,7 +30,7 @@
             <h1 class="wordmark"><a href="/">bheine.net</a></h1>
             <p class="tagline">Ben Heine: web communications and digital operations in Birmingham, AL</p>
             <nav class="menu" aria-label="Site">
-                <a href="/">home</a><span class="bar" aria-hidden="true">|</span><a href="blog.html">blog</a><span class="bar" aria-hidden="true">|</span><a href="mailto:rbheine@gmail.com">email</a><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="theme-toggle" type="button">dark mode</button>
+                <a href="/">home</a><span class="bar" aria-hidden="true">|</span><a href="blog.html">blog</a><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="theme-toggle" type="button">dark mode</button><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="twist-toggle" type="button">get twisted</button>
             </nav>
         </header>
 

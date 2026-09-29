@@ -22,3 +22,22 @@
 
     label();
 })();
+
+// "Get twisted": a loud animated background. Remembered like the theme.
+(() => {
+    const root = document.documentElement;
+    const button = document.getElementById('twist-toggle');
+    if (!button) return;
+
+    const label = () => {
+        button.textContent = root.classList.contains('twisted') ? 'untwist' : 'get twisted';
+    };
+
+    button.addEventListener('click', () => {
+        const on = root.classList.toggle('twisted');
+        try { localStorage.setItem('twisted', on ? 'on' : 'off'); } catch (e) {}
+        label();
+    });
+
+    label();
+})();

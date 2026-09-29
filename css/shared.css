@@ -136,7 +136,7 @@ a:focus-visible {
 
 /* Styled like the other menu links */
 .theme-toggle {
-    margin: 0 0 0 0.5em;
+    margin: 0 0.5em;
     padding: 0;
     border: 0;
     background: none;
@@ -168,4 +168,82 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* ------------------------------------------------ get twisted
+   A spinning, colour-cycling background behind the page. The content sits
+   on a solid panel so it stays readable. No fast flashing: the fastest
+   cycle is several seconds. */
+
+html.twisted body {
+    background: #000;
+    overflow-x: hidden;
+}
+
+html.twisted body::before,
+html.twisted body::after {
+    content: '';
+    position: fixed;
+    pointer-events: none;
+}
+
+/* Spinning pinwheel, cycling through the colour wheel */
+html.twisted body::before {
+    inset: -75vmax;
+    z-index: -2;
+    background: repeating-conic-gradient(from 0deg,
+            #ff00c8 0deg 9deg,
+            #ffe600 9deg 18deg,
+            #00e1ff 18deg 27deg,
+            #6dff00 27deg 36deg);
+    animation: twist-spin 14s linear infinite, twist-hue 6s linear infinite;
+}
+
+/* Pulsing rings laid over the pinwheel and inverted against it */
+html.twisted body::after {
+    inset: 0;
+    z-index: -1;
+    background: repeating-radial-gradient(circle at 50% 50%,
+            transparent 0 22px,
+            rgba(255, 255, 255, 0.9) 22px 30px);
+    mix-blend-mode: difference;
+    animation: twist-pulse 5s ease-in-out infinite alternate;
+}
+
+html.twisted .page {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background: var(--bg);
+    border: 4px ridge #ff00c8;
+    box-shadow: 10px 10px 0 #000;
+    transform: rotate(-1deg);
+}
+
+@keyframes twist-spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes twist-hue {
+    to { filter: hue-rotate(360deg); }
+}
+
+@keyframes twist-pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.6); }
+}
+
+/* Keep the graphics, drop the motion */
+@media (prefers-reduced-motion: reduce) {
+    html.twisted body::before,
+    html.twisted body::after {
+        animation: none;
+    }
+}
+
+@media (max-width: 720px) {
+    html.twisted .page {
+        margin: 1rem 0.5rem;
+        transform: none;
+    }
 }
