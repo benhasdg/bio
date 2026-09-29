@@ -20,7 +20,7 @@ A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites
 - **Type:** Georgia for reading and headings, Verdana for dates, captions and the sidebar (system fonts).
 - **Structure:** the homepage has About, Experience, Skills, then the four newest posts as a list. `blog.html` holds every post as a dated entry. The sidebar holds Elsewhere. Articles are single posts with framed photos.
 - **Dark mode:** a toggle in the nav (`js/theme.js`). A small inline script in each page's `<head>` applies the saved choice, or the system setting, before the page paints.
-- **Get twisted:** the nav's "get twisted" link fills the viewport with a deliberately heavy WebGL shader (`js/twist.js`: full device resolution, 2x2 supersampling, domain-warped noise and a 96-step fractal fold) under pulsing CSS rings. It is meant to run slowly even on an iPhone 13 Pro. It is never remembered, so a reload turns it off; software renderers and GPUs that would take over 1.5 s a frame get a CSS pinwheel instead.
+- **Get twisted:** the nav's "get twisted" link fills the viewport with a heavy WebGL shader (`js/twist.js`: kaleidoscope, domain-warped noise and a 96-step fractal fold at full device resolution) under pulsing CSS rings, with the page content layered on top. Resolution steps down automatically on GPUs that can't hold about 20 fps. It is never remembered, so a reload turns it off; software renderers and GPUs that would take over 1.5 s a frame get a CSS pinwheel instead. Tuning constants are at the top of `js/twist.js`.
 - Design tokens live in `css/shared.css` under `:root`.
 
 ## Project structure

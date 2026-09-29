@@ -1,18 +1,22 @@
-// "Get twisted" background: a full-screen WebGL shader rendered at full
-// device resolution with 2x2 supersampling. Each of the four samples runs a
-// kaleidoscope, three levels of 8-octave domain-warped noise and a 96-step
-// fractal fold. It is meant to be slow, even on a recent phone.
+// "Get twisted" background: a full-screen WebGL shader at full device
+// resolution. Each pixel runs a kaleidoscope, three levels of 8-octave
+// domain-warped noise and a 96-step fractal fold. It is heavy on purpose,
+// but tuned to stay watchable on a recent phone.
+//
+// Resolution adapts: it starts at full device pixels and steps down
+// while frames take longer than 50 ms, so slower GPUs trade sharpness for
+// smoothness instead of dropping to a slideshow.
 //
 // Loop counts are uniforms rather than constants so shader compilers (the
 // Direct3D one in particular) can't unroll them into a program that takes
 // minutes to compile. Compilation runs in the background where the browser
 // supports it, so turning the mode on never freezes the page.
 //
-// Two guards keep it slow rather than stuck:
+// Guards:
 // - Software renderers, and GPUs whose probe frame projects to more than
-//   1.5 s at full size, get the CSS pinwheel instead.
+//   1.5 s, get the CSS pinwheel instead.
 // - If three frames in a row take over 1.5 s, it drops to the pinwheel.
-// The mode is never remembered, so a reload always turns it off.
+// - The mode is never remembered, so a reload always turns it off.
 //
 // It pauses when the tab is hidden and draws one still frame for visitors
 // who prefer reduced motion.
@@ -23,7 +27,10 @@
     const LIMIT_MS = 1500;
     const OCTAVES = 8;
     const FOLDS = 96;
-    const SAMPLES = 2; // per axis: 2x2 supersampling
+    const SAMPLES = 1; // per axis; 2 (2x2 supersampling) measured ~20x slower
+    const MAX_DPR = 3;
+    const TARGET_MS = 50; // step resolution down while frames are slower than this
+    const MIN_SCALE = 0.35; // never below 35% of full resolution
 
     const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
     const FRAG = `
@@ -104,6 +111,7 @@ void main() {
 }`;
 
     let canvas = null, gl = null, raf = 0, start = 0, last = 0, slow = 0;
+    let scale = 1, sum = 0, count = 0;
     let state = 'off'; // off | compiling | running | failed
     const u = {};
 
@@ -121,13 +129,14 @@ void main() {
             canvas.remove();
         }
         canvas = gl = null;
-        start = last = slow = 0;
+        start = last = slow = sum = count = 0;
+        scale = 1;
         // Guarded: classList.remove rewrites the attribute even when the class
         // is absent, which would retrigger the observer below
         if (root.classList.contains('twist-gl')) root.classList.remove('twist-gl');
     };
 
-    const dprNow = () => Math.min(window.devicePixelRatio || 1, 3);
+    const dprNow = () => Math.min(window.devicePixelRatio || 1, MAX_DPR) * scale;
 
     // Step 1: create the context and start compiling
     const begin = () => {
@@ -209,10 +218,19 @@ void main() {
 
     const frame = (now) => {
         if (state !== 'running') return;
-        if (last && now - last > LIMIT_MS) {
-            if (++slow >= 3) return fail();
-        } else {
-            slow = 0;
+        if (last) {
+            const dt = now - last;
+            if (dt > LIMIT_MS) {
+                if (++slow >= 3) return fail();
+            } else {
+                slow = 0;
+            }
+            // Every 20 frames, drop resolution if the average was too slow
+            sum += dt;
+            if (++count === 20) {
+                if (sum / count > TARGET_MS && scale > MIN_SCALE) scale = Math.max(MIN_SCALE, scale * 0.8);
+                sum = count = 0;
+            }
         }
         last = now;
 
