@@ -3,8 +3,9 @@
 // domain-warped noise and a 96-step fractal fold. It is heavy on purpose,
 // but tuned to stay watchable on a recent phone.
 //
-// Resolution adapts: it starts at full device pixels and steps down
-// while frames take longer than 50 ms, so slower GPUs trade sharpness for
+// Resolution adapts: it starts at full device pixels, steps down
+// while frames take longer than 50 ms and back up when there is headroom,
+// so slower GPUs trade sharpness for
 // smoothness instead of dropping to a slideshow.
 //
 // Loop counts are uniforms rather than constants so shader compilers (the
@@ -225,10 +226,14 @@ void main() {
             } else {
                 slow = 0;
             }
-            // Every 20 frames, drop resolution if the average was too slow
+            // Every 20 frames, adjust resolution: down if the average was too
+            // slow, back up if there's headroom (e.g. after a window was
+            // hidden behind others and the browser throttled it)
             sum += dt;
             if (++count === 20) {
-                if (sum / count > TARGET_MS && scale > MIN_SCALE) scale = Math.max(MIN_SCALE, scale * 0.8);
+                const avg = sum / count;
+                if (avg > TARGET_MS && scale > MIN_SCALE) scale = Math.max(MIN_SCALE, scale * 0.8);
+                else if (avg < TARGET_MS / 2 && scale < 1) scale = Math.min(1, scale * 1.25);
                 sum = count = 0;
             }
         }

@@ -28,7 +28,6 @@ This workflow documents how to manage, edit, and publish content to this persona
 │   └── lightbox.js         # Image click-to-zoom (article pages)
 ├── news/                   # News articles directory
 │   ├── 2026-kitchen-renovation.html
-│   ├── 2026-data-analytics.html
 │   ├── 2020-patio-project.html
 │   └── assets/            # Images and media for articles
 │       ├── kitchenrenoimages/

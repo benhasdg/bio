@@ -38,7 +38,6 @@ A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites
 │   └── lightbox.js                # Article image lightbox behavior
 ├── news/
 │   ├── 2020-patio-project.html
-│   ├── 2026-data-analytics.html
 │   ├── 2026-kitchen-renovation.html
 │   └── assets/                    # Article media
 └── .agent/workflows/              # Editing/deploy workflow notes
@@ -73,7 +72,6 @@ Current articles:
 - `news/2026-tump.html`
 - `news/2026-tickr.html`
 - `news/2026-kitchen-renovation.html`
-- `news/2026-data-analytics.html`
 - `news/2020-patio-project.html`
 
 Article styling lives in `css/article.css`.
