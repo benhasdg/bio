@@ -19,11 +19,14 @@
 // - If three frames in a row take over 1.5 s, it drops to the pinwheel.
 // - The mode is never remembered, so a reload always turns it off.
 //
-// It pauses when the tab is hidden and draws one still frame for visitors
-// who prefer reduced motion.
+// It pauses when the tab is hidden, and runs at under a third of the speed for
+// visitors who prefer reduced motion.
 (() => {
     const root = document.documentElement;
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Visitors who prefer reduced motion still get the effect (they chose to turn it on),
+    // just at under a third of the speed.
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SPEED = calm ? 0.3 : 1;
 
     const LIMIT_MS = 1500;
     const OCTAVES = 8;
@@ -247,9 +250,9 @@ void main() {
             gl.viewport(0, 0, w, h);
         }
         gl.uniform2f(u.r, w, h);
-        gl.uniform1f(u.t, (now - start) / 1000);
+        gl.uniform1f(u.t, (now - start) / 1000 * SPEED);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
-        if (!still) raf = requestAnimationFrame(frame);
+        raf = requestAnimationFrame(frame);
     };
 
     const sync = () => {
@@ -275,7 +278,4 @@ void main() {
         if (on !== wasOn) { wasOn = on; sync(); }
     }).observe(root, { attributes: true, attributeFilter: ['class'] });
     document.addEventListener('visibilitychange', sync);
-    window.addEventListener('resize', () => {
-        if (state === 'running' && still) raf = requestAnimationFrame(frame);
-    });
 })();

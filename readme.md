@@ -13,14 +13,16 @@ Main features:
 - Click-to-zoom lightbox for article images
 - GitHub Pages deployment using the root-level `CNAME` file
 
-## Design: weblog, circa 2005
+## Design: Toejam & Earl
 
-A single-column weblog with a sidebar, in the spirit of mid-2000s personal sites. White page, plain blue links, thin rules. No dark mode, images, effects or web fonts.
+The soft, gloopy side of the game. The page is a lumpy island with scalloped grass on top and pink goo dripping off the bottom. Its edges wobble through SVG displacement filters (inlined at the top of each page's `<body>`).
 
-- **Type:** Georgia for reading and headings, Verdana for dates, captions and the sidebar (system fonts).
-- **Structure:** the homepage has About, Experience, Skills, then the four newest posts as a list. `blog.html` holds every post as a dated entry. The sidebar holds Elsewhere. Articles are single posts with framed photos.
-- **Dark mode:** a toggle in the nav (`js/theme.js`). A small inline script in each page's `<head>` applies the saved choice, or the system setting, before the page paints.
-- **Get twisted:** the nav's "get twisted" link fills the viewport with a heavy WebGL shader (`js/twist.js`: kaleidoscope, domain-warped noise and a 96-step fractal fold at full device resolution) under pulsing CSS rings, with the page content layered on top. Resolution steps down automatically on GPUs that can't hold about 20 fps. It is never remembered, so a reload turns it off; software renderers and GPUs that would take over 1.5 s a frame get a CSS pinwheel instead. Tuning constants are at the top of `js/twist.js`.
+- **World:** light mode tiles `img/lawn.svg` (grass, flowers, a lake, a cliff). Space mode tiles `img/squiggle.svg` (the intro's purple wallpaper, with weird green glyphs). Both scroll diagonally.
+- **Type:** Titan One for outlined bubble titles, Chewy for menu, dates and small labels, Nunito for reading (Google Fonts).
+- **Shapes:** uneven "blob" corners everywhere. Dates, the sidebar and block quotes are the game's black dialogue boxes with dotted lime borders. The mascot in the masthead is `img/tv.svg`.
+- **Animation:** the title bounces in once, the TV bobs, buttons squish like jelly on hover with a blinking pointer, and the background scrolls. The goo drips, dialogue boxes morph between lumpy shapes, headings sway, and sections squash in on load. All of it stops under `prefers-reduced-motion`.
+- **Day / space mode:** a toggle in the nav (`js/theme.js`). A small inline script in each page's `<head>` applies the saved choice, or the system setting, before the page paints.
+- **Get twisted:** the nav's "get twisted" link fills the viewport with a heavy WebGL shader (`js/twist.js`: kaleidoscope, domain-warped noise and a 96-step fractal fold at full device resolution) under pulsing CSS rings, with the page content layered on top. Resolution steps down automatically on GPUs that can't hold about 20 fps. It is never remembered, so a reload turns it off. Visitors with reduced motion get it at under a third of the speed rather than a still frame; software renderers and GPUs that would take over 1.5 s a frame get a CSS pinwheel instead. Tuning constants are at the top of `js/twist.js`.
 - Design tokens live in `css/shared.css` under `:root`.
 
 ## Project structure

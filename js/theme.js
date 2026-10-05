@@ -6,7 +6,7 @@
     if (!button) return;
 
     const label = () => {
-        button.textContent = root.getAttribute('data-theme') === 'dark' ? 'light mode' : 'dark mode';
+        button.textContent = root.getAttribute('data-theme') === 'dark' ? 'day mode' : 'space mode';
     };
 
     button.addEventListener('click', () => {

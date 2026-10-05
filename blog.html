@@ -7,6 +7,9 @@
     <title>Blog | Ben Heine</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="All posts from Ben Heine: home projects, words, and building things.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titan+One&family=Chewy&family=Nunito:wght@500;700;800&display=swap">
     <link rel="stylesheet" href="css/shared.css">
     <link rel="stylesheet" href="css/home.css">
     <script>
@@ -20,13 +23,15 @@
 </head>
 
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="wobble" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="30" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="wobble-s" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="9" result="n"><animate attributeName="baseFrequency" values="0.05;0.07;0.05" dur="6s" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
     <div class="page">
 
         <header class="masthead">
+            <img class="present" src="img/tv.svg" width="86" height="77" alt="">
             <h1 class="wordmark"><a href="/">bheine.net</a></h1>
             <p class="tagline">Ben Heine: web communications and digital operations in Birmingham, AL</p>
             <nav class="menu" aria-label="Site">
-                <a href="/">home</a><span class="bar" aria-hidden="true">|</span><a href="blog.html">blog</a><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="theme-toggle" type="button">dark mode</button><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="twist-toggle" type="button">get twisted</button>
+                <a href="/">home</a><span class="bar" aria-hidden="true">|</span><a href="blog.html">blog</a><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="theme-toggle" type="button">space mode</button><span class="bar" aria-hidden="true">|</span><button class="theme-toggle" id="twist-toggle" type="button">get twisted</button>
             </nav>
         </header>
 
@@ -35,7 +40,7 @@
                 <h1 class="page-title">Blog</h1>
                 <section id="posts" aria-label="All posts">
                     <h2 class="date-head">Monday, September 28, 2026</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2026-long-receipt.html">The Long Receipt: CVS, Kitchen Tickets,
                                 and Why Tickr Prints on Paper</a></h2>
                         <p>In 2011 I was on the team at CVS that kept adding things to the checkout receipt. How that
@@ -45,7 +50,7 @@
                     </article>
 
                     <h2 class="date-head">Friday, June 12, 2026</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2026-embiggen.html">A Perfectly Cromulent Word: Embiggen at
                                 Thirty</a></h2>
                         <p>A made-up word from a made-up founder, and the 1884 citation that gave it a past. What
@@ -54,7 +59,7 @@
                     </article>
 
                     <h2 class="date-head">Saturday, April 18, 2026</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2026-tump.html">Tump, and Other Words the South Kept</a></h2>
                         <p>To tump is to tip something over. Where the word comes from, why nobody is sure, and a few
                             more Southern words with better paper trails.</p>
@@ -62,7 +67,7 @@
                     </article>
 
                     <h2 class="date-head">Friday, March 13, 2026</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2026-tickr.html">Building Tickr, a Morning Briefing for a
                                 Receipt Printer</a></h2>
                         <p>Every morning a strip of thermal paper prints the day's calendar, weather and to-do list.
@@ -72,7 +77,7 @@
                     </article>
 
                     <h2 class="date-head">Friday, January 30, 2026</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2026-kitchen-renovation.html">Kitchen Renovation</a></h2>
                         <p>This is the biggest project I've taken on: a full gut renovation of our kitchen, including
                             custom wood countertops I built myself.</p>
@@ -80,7 +85,7 @@
                     </article>
 
                     <h2 class="date-head">Sunday, July 12, 2020</h2>
-                    <article class="entry">
+                    <article class="entry card">
                         <h2 class="title"><a href="news/2020-patio-project.html">The Stone Paver Patio Project</a></h2>
                         <p>In the summer of 2020 I built a multi-level stone paver patio from scratch. No contractor,
                             no kit: some research, a rented plate compactor, and a lot of weekends.</p>

@@ -1,67 +1,155 @@
 /* ---------------------------------------------------------------
-   Design: a personal weblog, circa 2005.
-   White page, Georgia for reading, Verdana for the small print,
-   plain blue links, one narrow column plus a sidebar. System fonts
-   only, no images, no effects.
+   Design: Toejam & Earl (Sega Genesis, 1991), the soft, gloopy side.
+   Light mode is the lawn from the game's map screens: green grass,
+   flowers, a lake, a cliff. Dark mode is the purple squiggle wallpaper
+   from the intro. The page is a lumpy island with scalloped grass on top
+   and pink goo dripping off the bottom; its edges wobble (SVG filters
+   inlined in each page). Dialogue boxes (dates, sidebar, quotes) copy
+   the game's black boxes with dotted borders. Nothing is a straight line
+   or a square corner if it can be avoided.
+   Motion: the wallpaper scrolls diagonally, the title bounces in once,
+   the TV bobs, buttons squish like jelly.
    --------------------------------------------------------------- */
 
 :root {
-    --bg: #fff;
-    --text: #222;
-    --heading: #000;
-    --muted: #666;
-    --rule: #ccc;
-    --link: #2a5db0;
-    --visited: #6b3fa0;
-    --hover: #b3261e;
+    --world: #2fae3a;
+    --panel: #fff1d6;
+    --card: #fff;
 
-    --serif: Georgia, 'Times New Roman', Times, serif;
-    --sans: Verdana, Geneva, Tahoma, sans-serif;
+    --text: #2b1550;
+    --heading: #2b1550;
+    --muted: #6a4a8c;
+    --link: #b3123f;
+    --visited: #6a2bb3;
+    --hover: #00706f;
 
+    --ink: #000;
+    --logo: #ffe14a;
+    --logo-shadow: #e8321f;
+    --btn: #ffe14a;
+    --btn-text: #14072e;
+    --box-bg: #000;
+    --box-text: #fff;
+    --box-edge: #8fe83c;
+    --box-accent: #ffe14a;
     --frame: #fff;
 
-    --page: 50rem;
-    --gutter: 1.5rem;
+    --display: 'Titan One', 'Arial Black', sans-serif;
+    --hud: 'Chewy', 'Comic Sans MS', cursive;
+    --body: 'Nunito', system-ui, 'Segoe UI', sans-serif;
+
+    /* Lumpy, uneven corners: used on everything boxy */
+    --blob: 1.8rem 2.5rem 2rem 2.8rem / 2.5rem 1.8rem 2.8rem 2rem;
+    --blob-sm: 1rem 1.5rem 1.1rem 1.7rem / 1.5rem 1rem 1.7rem 1.1rem;
+
+    --page: 56rem;
+    --gutter: 1.9rem;
+    --tile: 600px;
 }
 
 [data-theme="dark"] {
-    --bg: #1d1f21;
-    --text: #d6d6d2;
-    --heading: #f2f2ee;
-    --muted: #9a9a96;
-    --rule: #44474a;
-    --link: #8ab4f8;
-    --visited: #c3a6f5;
-    --hover: #ff8f80;
-    --frame: #2a2d30;
-}
+    --world: #6d1fb0;
+    --panel: #24104f;
+    --card: #341a74;
 
-[data-theme="dark"] ::selection {
-    background: #5a4a10;
-    color: #fff;
+    --text: #f3ecff;
+    --heading: #ffe14a;
+    --muted: #c9b8ee;
+    --link: #5ff0e0;
+    --visited: #ff9be8;
+    --hover: #ffe14a;
+    --frame: #4a2a9a;
+    --tile: 240px;
 }
 
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: var(--serif);
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text);
-    background: var(--bg);
+html {
+    min-height: 100%;
+    background: var(--world);
 }
 
+body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text);
+    background: transparent;
+}
+
+/* ------------------------------------------------ the world
+   One fixed layer, a little bigger than the screen, tiled and slid one
+   tile diagonally on a loop. Transform only, so it costs nothing. */
+
+html::before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+    top: calc(-1 * var(--tile));
+    left: calc(-1 * var(--tile));
+    width: calc(100% + var(--tile));
+    height: calc(100% + var(--tile));
+    background: url("../img/lawn.svg") 0 0 / var(--tile) var(--tile);
+    animation: world-scroll 90s linear infinite;
+}
+
+html[data-theme="dark"]::before {
+    background-image: url("../img/squiggle.svg");
+    animation-duration: 24s;
+}
+
+@keyframes world-scroll {
+    to { transform: translate(var(--tile), var(--tile)); }
+}
+
+/* ------------------------------------------------ the island
+   .page::before is the body of the island: panel colour, grass fringe on
+   top, outlined by stacked drop-shadows and wobbled by an SVG filter.
+   .page::after is the goo. The text sits on top, unfiltered. */
+
 .page {
-    max-width: var(--page);
-    margin: 0 auto;
-    padding: 0 var(--gutter);
+    position: relative;
+    z-index: 0;
+    max-width: min(var(--page), calc(100% - 1.5rem));
+    margin: 3.5rem auto 9rem;
+    padding: 3.25rem var(--gutter) 1.5rem;
+}
+
+.page::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -28px 0 0 0;
+    background:
+        url("../img/grass-top.svg") 0 0 / 200px 44px repeat-x,
+        linear-gradient(var(--panel), var(--panel)) 0 24px / 100% calc(100% - 24px) no-repeat;
+    border-radius: 0 0 3rem 3rem / 0 0 2rem 2rem;
+    filter: url(#wobble) drop-shadow(3px 0 0 var(--ink)) drop-shadow(-3px 0 0 var(--ink)) drop-shadow(0 -3px 0 var(--ink));
+}
+
+.page::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: calc(100% - 22px);
+    height: 100px;
+    background: url("../img/goo-bottom.svg") 0 0 / 240px 100px repeat-x;
+    transform-origin: 50% 0;
+    animation: goo-drip 4.5s ease-in-out infinite alternate;
+    filter: url(#wobble-s) drop-shadow(0 3px 0 var(--ink)) drop-shadow(3px 0 0 var(--ink)) drop-shadow(-3px 0 0 var(--ink));
 }
 
 a {
     color: var(--link);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 2px;
 }
 
 a:visited {
@@ -72,98 +160,359 @@ a:hover {
     color: var(--hover);
 }
 
-a:focus-visible {
-    outline: 2px solid var(--hover);
-    outline-offset: 2px;
+a:focus-visible,
+button:focus-visible {
+    outline: 3px dotted var(--hover);
+    outline-offset: 4px;
 }
 
 ::selection {
-    background: #ffe9a8;
-    color: #000;
+    background: #ff4f8b;
+    color: #fff;
+}
+
+/* Bubble type: yellow fill, fat black outline, red drop shadow, hand-wobbled */
+.wordmark,
+.bubble {
+    font-family: var(--display);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--logo);
+    -webkit-text-stroke: 0.2em var(--ink);
+    paint-order: stroke fill;
+    stroke-linejoin: round;
+    text-shadow: 0.06em 0.08em 0 var(--logo-shadow);
 }
 
 /* ------------------------------------------------ masthead */
 
 .masthead {
-    padding: 2rem 0 0.75rem;
-    border-bottom: 1px solid var(--heading);
-    margin-bottom: 2rem;
+    position: relative;
+    padding: 0 6rem 2.5rem 0;
+    margin-bottom: 1.75rem;
+}
+
+/* A hand-drawn wave where the checkered strip was */
+.masthead::after {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--gutter) + 1rem);
+    right: calc(-1 * var(--gutter) + 1rem);
+    bottom: 0;
+    height: 18px;
+    background: url("../img/wave.svg") 0 0 / 80px 18px repeat-x;
 }
 
 .wordmark {
     margin: 0;
-    font-family: var(--serif);
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: 3.4rem;
+    letter-spacing: 0.01em;
+    filter: url(#wobble-s);
+    animation: title-drop 1.1s both;
 }
 
 .wordmark a,
-.wordmark a:visited {
-    color: var(--heading);
+.wordmark a:visited,
+.wordmark a:hover {
+    color: var(--logo);
     text-decoration: none;
 }
 
+@keyframes title-drop {
+    0% { transform: translateY(-160px) rotate(-4deg) scale(1, 1.2); animation-timing-function: cubic-bezier(.5, 0, 1, .6); }
+    52% { transform: translateY(0) rotate(0) scale(1.08, 0.88); animation-timing-function: cubic-bezier(0, .4, .5, 1); }
+    68% { transform: translateY(-20px) scale(0.97, 1.05); animation-timing-function: cubic-bezier(.5, 0, 1, .6); }
+    82% { transform: translateY(0) scale(1.04, 0.94); animation-timing-function: cubic-bezier(0, .4, .5, 1); }
+    91% { transform: translateY(-6px) scale(1); animation-timing-function: cubic-bezier(.5, 0, 1, .6); }
+    100% { transform: translateY(0) scale(1); }
+}
+
 .tagline {
-    margin: 0.25rem 0 1rem;
-    font-family: var(--sans);
-    font-size: 0.75rem;
+    margin: 0.6rem 0 1.4rem;
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--muted);
 }
 
+/* The TV */
+.present {
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    width: 86px;
+    height: auto;
+    transform-origin: 50% 90%;
+    animation: tv-bob 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes tv-bob {
+    from { transform: translateY(0) rotate(-4deg) scale(1.03, 0.96); }
+    to { transform: translateY(-10px) rotate(4deg) scale(0.97, 1.04); }
+}
+
+/* Menu: jelly blobs. A pointer blinks beside the hovered one. */
 .menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.6rem;
     margin: 0;
-    font-family: var(--sans);
-    font-size: 0.8125rem;
-}
-
-.menu a {
-    margin: 0 0.5em;
-}
-
-.menu a:first-child {
-    margin-left: 0;
+    padding-left: 1.3rem;
 }
 
 .menu .bar {
-    color: var(--rule);
+    display: none;
 }
 
-/* Styled like the other menu links */
+.menu a,
 .theme-toggle {
-    margin: 0 0.5em;
-    padding: 0;
-    border: 0;
-    background: none;
-    font: inherit;
-    color: var(--link);
-    text-decoration: underline;
+    position: relative;
+    margin: 0;
+    padding: 0.5rem 1.1rem 0.45rem;
+    border: 4px solid var(--ink);
+    border-radius: var(--blob-sm);
+    background: var(--btn);
+    box-shadow: 0 5px 0 var(--ink);
+    font: 1.1rem/1.2 var(--hud);
+    color: var(--btn-text);
+    text-decoration: none;
     cursor: pointer;
 }
 
-.theme-toggle:hover {
-    color: var(--hover);
+.menu a:nth-child(3),
+.theme-toggle {
+    border-radius: 1.4rem 1rem 1.6rem 1.1rem / 1rem 1.5rem 1.1rem 1.6rem;
 }
 
-.theme-toggle:focus-visible {
-    outline: 2px solid var(--hover);
-    outline-offset: 2px;
+.menu a:visited {
+    color: var(--btn-text);
+}
+
+.menu a:hover,
+.theme-toggle:hover {
+    color: var(--btn-text);
+    background: #fff;
+    animation: jelly 0.5s;
+}
+
+.menu a:active,
+.theme-toggle:active {
+    transform: translateY(5px);
+    box-shadow: none;
+    animation: none;
+}
+
+@keyframes jelly {
+    0% { transform: scale(1, 1); }
+    30% { transform: scale(1.14, 0.84); }
+    55% { transform: scale(0.92, 1.1); }
+    80% { transform: scale(1.04, 0.97); }
+    100% { transform: scale(1, 1); }
+}
+
+.menu a::before,
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    left: -1.25rem;
+    top: 50%;
+    margin-top: -8px;
+    border: 8px solid transparent;
+    border-left: 12px solid var(--ink);
+    border-right-width: 0;
+    opacity: 0;
+}
+
+.menu a:hover::before,
+.theme-toggle:hover::before,
+.menu a:focus-visible::before,
+.theme-toggle:focus-visible::before {
+    opacity: 1;
+    animation: pointer-blink 0.6s steps(1) infinite;
+}
+
+html[data-theme="dark"] .menu a::before,
+html[data-theme="dark"] .theme-toggle::before {
+    border-left-color: var(--logo);
+}
+
+@keyframes pointer-blink {
+    50% { opacity: 0; }
+}
+
+/* ------------------------------------------------ more gloop (motion)
+   The goo drips, boxes breathe between two lumpy shapes, headings sway,
+   and things squash into place when the page loads or you point at them. */
+
+@keyframes goo-drip {
+    from { transform: scaleY(0.92); }
+    to { transform: scaleY(1.22); }
+}
+
+@keyframes morph-sm {
+    from { border-radius: var(--blob-sm); }
+    to { border-radius: 1.6rem 1rem 1.8rem 1.1rem / 1.1rem 1.7rem 1rem 1.6rem; }
+}
+
+@keyframes morph-lg {
+    from { border-radius: var(--blob); }
+    to { border-radius: 2.6rem 1.8rem 2.9rem 2rem / 2rem 2.8rem 1.8rem 2.6rem; }
+}
+
+@keyframes sway {
+    from { transform: rotate(-1.4deg) scale(1, 1); }
+    to { transform: rotate(1.4deg) scale(1.03, 0.97); }
+}
+
+@keyframes squash-in {
+    0% { transform: scale(0.6, 1.25) translateY(30px); opacity: 0; }
+    45% { transform: scale(1.1, 0.88); opacity: 1; }
+    70% { transform: scale(0.96, 1.05); }
+    100% { transform: scale(1, 1); opacity: 1; }
+}
+
+.date-head,
+.sidebar section,
+article blockquote {
+    animation: morph-sm 7s ease-in-out infinite alternate;
+}
+
+.sidebar section:nth-of-type(2n),
+.date-head:nth-of-type(2n) {
+    animation-delay: -3.5s;
+}
+
+.entry.card {
+    animation: morph-lg 9s ease-in-out infinite alternate;
+}
+
+.entry.card:nth-of-type(2n) {
+    animation-delay: -4.5s;
+}
+
+#about .date-head,
+#experience .date-head,
+#skills .date-head,
+#recent .date-head,
+.page-title,
+article h2 {
+    transform-origin: 0 60%;
+    animation: sway 4.5s ease-in-out infinite alternate;
+}
+
+#experience .date-head,
+article h2:nth-of-type(2n) {
+    animation-delay: -1.5s;
+}
+
+#skills .date-head,
+article h2:nth-of-type(3n) {
+    animation-delay: -3s;
+}
+
+/* Squash in on load, staggered */
+main > section,
+.post > article,
+.sidebar section,
+.page-title,
+.entry.card {
+    animation-fill-mode: backwards;
+}
+
+main > section {
+    animation: squash-in 0.9s both;
+}
+
+main > section:nth-of-type(2) { animation-delay: 0.15s; }
+main > section:nth-of-type(3) { animation-delay: 0.3s; }
+main > section:nth-of-type(4) { animation-delay: 0.45s; }
+
+.post > article,
+.post > h1 {
+    animation: squash-in 0.9s 0.2s both;
+}
+
+.entry.card:hover,
+.image-container img:hover,
+.grid img:hover {
+    animation: jelly 0.5s;
 }
 
 /* ------------------------------------------------ footer */
 
 footer {
     margin-top: 3rem;
-    padding: 1rem 0 2.5rem;
-    border-top: 1px solid var(--rule);
-    font-family: var(--sans);
-    font-size: 0.75rem;
+    padding: 1rem 0 2.25rem;
+    font-family: var(--hud);
+    font-size: 1rem;
     color: var(--muted);
 }
 
 footer p {
     margin: 0;
+}
+
+/* ------------------------------------------------ dialogue boxes
+   The game's text boxes: black, dotted lime border. Shared by dates,
+   the sidebar and block quotes. */
+
+.date-head,
+.sidebar section,
+article blockquote {
+    background: var(--box-bg);
+    color: var(--box-text);
+    border: 5px dotted var(--box-edge);
+    border-radius: var(--blob-sm);
+    outline: 3px solid var(--ink);
+}
+
+@media (max-width: 720px) {
+    :root {
+        --gutter: 1.1rem;
+    }
+
+    .page {
+        margin-top: 3rem;
+        padding-top: 3rem;
+    }
+
+    .masthead {
+        padding-right: 4.5rem;
+    }
+
+    .wordmark {
+        font-size: 2.3rem;
+    }
+
+    .present {
+        width: 60px;
+    }
+}
+
+/* Keep the look, drop the motion */
+@media (prefers-reduced-motion: reduce) {
+    html::before,
+    .wordmark,
+    .present,
+    .page::after,
+    .date-head,
+    .sidebar section,
+    article blockquote,
+    .entry.card,
+    .page-title,
+    article h2,
+    #about .date-head,
+    #experience .date-head,
+    #skills .date-head,
+    #recent .date-head,
+    main > section,
+    .post > article,
+    .post > h1,
+    .menu a:hover,
+    .theme-toggle:hover,
+    .menu a:hover::before,
+    .theme-toggle:hover::before {
+        animation: none;
+    }
 }
 
 /* ------------------------------------------------ get twisted
@@ -268,13 +617,6 @@ html.twisted .theme-toggle:hover {
     color: #ff5ce1;
 }
 
-html.twisted .masthead,
-html.twisted .date-head,
-html.twisted .sidebar h2,
-html.twisted footer {
-    border-color: #fff;
-}
-
 html.twisted .wordmark,
 html.twisted h1,
 html.twisted h2 {
@@ -299,13 +641,50 @@ html.twisted h2 {
     to { transform: rotate(1.5deg) skewX(3deg); }
 }
 
-/* Keep the graphics, drop the motion */
+/* Reduced motion: same graphics, much slower, and no wobbling headings */
 @media (prefers-reduced-motion: reduce) {
-    html.twisted body::before,
-    html.twisted body::after,
+    html.twisted:not(.twist-gl) body::before {
+        animation-duration: 60s, 24s;
+    }
+
+    html.twisted body::after {
+        animation-duration: 18s, 80s;
+    }
+
     html.twisted .wordmark,
     html.twisted h1,
     html.twisted h2 {
         animation: none;
     }
+}
+
+/* The island steps aside so the shader fills the screen */
+html.twisted::before,
+html.twisted .present {
+    display: none;
+}
+
+html.twisted .page {
+    background: transparent;
+    border-color: transparent;
+}
+
+html.twisted .page::before,
+html.twisted .page::after,
+html.twisted .masthead::after {
+    display: none;
+}
+
+html.twisted .menu a,
+html.twisted .theme-toggle {
+    background: #000;
+    border-color: #fff;
+    box-shadow: none;
+}
+
+html.twisted .sidebar section,
+html.twisted .entry.card {
+    background: transparent;
+    border-color: #fff;
+    box-shadow: none;
 }

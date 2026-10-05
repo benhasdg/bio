@@ -1,34 +1,87 @@
 .layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 15rem;
+    grid-template-columns: minmax(0, 1fr) 14.5rem;
     gap: 2.5rem;
     align-items: start;
 }
 
-/* ------------------------------------------------ entries */
+/* ------------------------------------------------ section titles and dates */
 
-.date-head {
-    margin: 0 0 0.6rem;
-    padding-bottom: 0.2rem;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--sans);
-    font-size: 0.75rem;
+/* Section titles are bubble type */
+#about .date-head,
+#experience .date-head,
+#skills .date-head,
+#recent .date-head,
+.page-title {
+    margin: 0 0 1rem;
+    font-family: var(--display);
+    font-size: 1.7rem;
     font-weight: 400;
-    color: var(--muted);
+    line-height: 1.15;
+    color: var(--logo);
+    -webkit-text-stroke: 0.2em var(--ink);
+    filter: url(#wobble-s);
+    paint-order: stroke fill;
+    stroke-linejoin: round;
+    text-shadow: 0.07em 0.07em 0 var(--logo-shadow);
 }
+
+.page-title {
+    font-size: 2.3rem;
+}
+
+/* Real dates sit in a dialogue box (box styling is in shared.css) */
+.date-head {
+    display: inline-block;
+    margin: 0 0 1rem;
+    padding: 0.35rem 1rem 0.3rem;
+    font-family: var(--hud);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--box-accent);
+}
+
+#about .date-head,
+#experience .date-head,
+#skills .date-head,
+#recent .date-head {
+    display: block;
+    padding: 0;
+    background: none;
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+    color: var(--logo);
+}
+
+section[id] {
+    margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------ entries */
 
 .entry {
     margin-bottom: 2.25rem;
 }
 
+.entry.card {
+    padding: 1.1rem 1.25rem 0.5rem;
+    background: var(--card);
+    border: 4px solid var(--ink);
+    border-radius: var(--blob);
+    box-shadow: 0 7px 0 var(--ink);
+}
+
 .entry h2.title,
 .entry h3 {
-    font-family: var(--serif);
+    font-family: var(--body);
+    font-weight: 800;
     color: var(--heading);
 }
 
 .entry h2.title {
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.4rem;
     font-size: 1.4rem;
     line-height: 1.25;
 }
@@ -46,70 +99,88 @@
 }
 
 .entry .more {
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
 }
 
-/* Work history and skills are entries without dates */
-
 .entry.plain {
-    padding-top: 0.5rem;
+    padding-top: 0.25rem;
+}
+
+#about p {
+    margin: 0;
 }
 
 .job {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
 }
 
 .job h3 {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.3;
 }
 
 .job .where {
-    margin: 0 0 0.5rem;
-    font-family: var(--sans);
-    font-size: 0.75rem;
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--muted);
 }
 
 .job ul,
 .skill-list {
     margin: 0;
-    padding-left: 1.25rem;
+    padding-left: 1.35rem;
+    list-style: square;
 }
 
 .job li,
 .skill-list li {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
+    padding-left: 0.2rem;
+}
+
+.job li::marker,
+.skill-list li::marker {
+    color: var(--logo-shadow);
 }
 
 .skill-list strong {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--heading);
 }
 
-/* ------------------------------------------------ sidebar */
+/* ------------------------------------------------ sidebar: the score panel */
 
 .sidebar {
-    font-family: var(--sans);
-    font-size: 0.8125rem;
-    line-height: 1.55;
-}
-
-.sidebar h2 {
-    margin: 0 0 0.5rem;
-    padding-bottom: 0.2rem;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--serif);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--heading);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .sidebar section {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1.1rem 1.2rem 0.8rem;
+    border-radius: var(--blob);
+}
+
+.sidebar h2 {
+    margin: 0 0 0.7rem;
+    font-family: var(--hud);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--box-accent);
+}
+
+.sidebar a,
+.sidebar a:visited {
+    color: var(--box-accent);
+    overflow-wrap: anywhere;
+}
+
+.sidebar a:hover {
+    color: #fff;
 }
 
 .sidebar p {
@@ -123,36 +194,8 @@
 }
 
 .sidebar li {
-    margin-bottom: 0.3rem;
-}
-
-/* ------------------------------------------------ responsive */
-
-@media (max-width: 720px) {
-    .layout {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .wordmark {
-        font-size: 2rem;
-    }
-}
-
-/* Undated sections get a real heading instead of a date line */
-#about .date-head,
-#experience .date-head,
-#skills .date-head,
-#recent .date-head {
-    font-family: var(--serif);
-    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
     font-weight: 700;
-    color: var(--heading);
-    border-bottom-color: var(--heading);
-}
-
-#about p {
-    margin: 0;
 }
 
 /* ------------------------------------------------ recent posts list */
@@ -165,31 +208,39 @@
 
 .recent li {
     display: grid;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
+    grid-template-columns: 7.5rem minmax(0, 1fr);
     gap: 1rem;
-    padding: 0.3rem 0;
+    padding: 0.45rem 0;
+    font-weight: 700;
 }
 
 .recent .when {
-    font-family: var(--sans);
-    font-size: 0.75rem;
+    padding-top: 0.1rem;
+    font-family: var(--hud);
+    font-size: 1.05rem;
+    line-height: 1.4;
+    font-weight: 400;
     color: var(--muted);
-    padding-top: 0.2rem;
 }
 
-/* ------------------------------------------------ blog page */
+/* ------------------------------------------------ responsive */
 
-.page-title {
-    margin: 0 0 1.25rem;
-    font-family: var(--serif);
-    font-size: 1.9rem;
-    line-height: 1.2;
-    color: var(--heading);
-}
+@media (max-width: 760px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 
-@media (max-width: 720px) {
     .recent li {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 0.1rem;
+    }
+
+    .page-title {
+        font-size: 1.9rem;
+    }
+
+    .entry.card {
+        box-shadow: 0 5px 0 var(--ink);
     }
 }
